@@ -1,47 +1,85 @@
-             The TCPSETUP DOOMer's FAQ version 1.00
-                by Scott Coleman (tmkk@uiuc.edu)
-              and Jay Cotton (jay@calc.vet.uga.edu)
-   
+                 The TCP/IP Internet DOOMer's FAQ
+                by Scott Coleman (asre@uiuc.edu)
+             and Jay Cotton (jay@calc.vet.uga.edu)
+                            updated 9/25/94
+
+
+                         Introduction
+
+        iD Software's DOOM is truly the Killer App of the MS-DOS
+   world. DOOM's popularity is so immense, it has been estimated
+   that DOOM is installed on more PCs than OS/2 and Windows NT
+   combined, and DOOM's creators commute to work in Ferarri
+   Testarossas. Interest in the game has been so great that it has
+   been hacked, reverse-engineered, dissected, and enhanced more
+   than any other game in PC history. And now, as more and more
+   people become hooked into the Internet, DOOM is rapidly becoming
+   the Killer App of the Internet, as well.
+
+        Internet DOOM play is currently at the "clever hack" stage.
+   DOOM, as released by iD, supports only IPX network play and
+   serial play between two machines. As a result, the DOOM
+   documentation doesn't include any information about DOOMing
+   across the net. Of course, this also means that DOOMers can't
+   call id for help. The result of all this is many curious people
+   asking the same question: How do I play DOOM over the Internet?
+   Enter this document. In the pages that follow, we will attempt to
+   answer the most frequently asked questions about iDOOM, including
+   what you need, how to set it up, and how to find new fragbait -
+   er, I mean, opponents.
+
         DOOM across the Internet is made possible by a neat little
-   freeware program called TCPSETUP, written by Jake Page. TCPSETUP
-   uses the UDP protocol (part of the TCP/IP protocol suite) to send
-   DOOM game information between multiple machines on the Internet.
-   It is based on WATTCP, a public domain library of routines
-   written by Eric Engelke of the University of Waterloo. Although
-   the authors of this document did not write TCPSETUP, we have used
-   the program extensively and played iDOOM sessions successfully
-   with opponents as far away as Estonia (formerly a part of the
-   Soviet Union). In writing this FAQ, we hope that sharing some of
-   our experience will make it easier for you to get connected in
-   your own iDOOM sessions.
-   
-   Q1: I want to play Internet DOOM. What hardware do I need?
-   
+   freeware program called iDOOM. iDOOM uses the UDP protocol (part
+   of the TCP/IP protocol suite) to send DOOM game information
+   between multiple machines on the Internet. It is based on the
+   WATTCP TCP/IP kernel written by Eric Engelke of the University of
+   Waterloo. By some strange coincidence, the authors of this
+   document are also the creators of iDOOM, and we have used the
+   program to play Internet DOOM sessions with opponents from as far
+   away as Estonia. In writing this FAQ, we hope that sharing some
+   of our experience will make it easier for you to get connected in
+   your own Internet DOOM sessions. NOTE: Throughout this document,
+   we will refer specifically to games of DOOM played over the
+   Internet via a DIRECT CONNECTION, i.e. no modems are involved
+   anywhere in the link. Note that IHHD, SLIP and PPP connections
+   all involve modems at some point. Although other methods of
+   connecting two DOOM machines together across the Internet exist,
+   this document will focus on direct net connections using the
+   iDOOM network driver program.
+
+
+
+                        Getting Prepared
+
+   Q1: I want to play DOOM over the Internet using iDOOM. What
+   hardware do I need?
+
         To successfully play DOOM across the Internet, you will need
    the following hardware:
 
         * A machine capable of playing DOOM (D'OHH!) 
 
-        * An ethernet card. And not just any old ethernet card, mind
+        * An ethernet card. And not just any old ethernet card, mind 
         you - your ethernet card must be supported by a packet
-        driver if you wish to use it to play iDOOM. This document
-        assumes that your PC is already equipped with a functional
-        ethernet card, although it may currently be in use for some
-        other non-TCP/IP function (such as a node on a Novell
-        network).
+        driver if you wish to use it to play Internet DOOM. This
+        document assumes that your PC is already equipped with a
+        functional ethernet card, although it may currently be in
+        use for some other non-TCP/IP function (such as a node on a
+        Novell network).
 
         * A direct connection to the Internet. If there is a modem
         somewhere in the link between your PC and your opponent's
         PC, this FAQ is not for you. Although it is possible to play
-        iDOOM over a modem link (either by dialing up to a UNIX
-        machine and using IHHD or via SLIP/PPP), such connection
-        methods are beyond the scope of this document.
+        Internet DOOM over a modem link (either by dialing up to a
+        UNIX machine and using IHHD or via SLIP/PPP), such
+        connection methods are beyond the scope of this document.  
 
-   
         * A MicroSoft-compatible mouse. OK, OK - so you don't REALLY
         need a mouse to play iDOOM, but it does help you turn more
         quickly, aim more accurately, and STOMP your keyboard-only
-        iDOOM opponents... ;-)
+        Internet DOOM opponents... ;-)
+
+              
    
    Q2: OK, I've got all the hardware. What software do I need?
                   
@@ -49,29 +87,28 @@
    also required to round out your the package. Before you can play,
    you'll need to pick up the following:
    
-        * DOOM 1.2 or higher (1.6 beta or higher is STRONGLY
-        recommended, since 1.6 seems to have solved some problems
-        related to initializing network games). DOOM versions 1.1
-        and below are incapable of using TCPSETUP.
+        * DOOM 1.2 or higher (1.666 is STRONGLY recommended, since
+        this version seems to have solved some problems related to
+        initializing network games). DOOM versions 1.1 and below are
+        incapable of using iDOOM.
    
         * A packet driver written specifically for your ethernet
-        card. The Packet Driver is what lets TCPSETUP (and therefore
+        card. The Packet Driver is what lets iDOOM (and therefore
         DOOM) "talk" to your ethernet card.
    
-        * TCPSETUP.EXE, the Internet driver for DOOM.
+        * iDOOM.EXE, the Internet driver for DOOM.  
         
         * The WATTCP Applications (not absolutely necessary, but can
-        be useful for debugging and testing your setup).
+        definitely be useful for debugging and testing your setup).
+
    
    Q3: Hold it - I don't have some of this software! Where can I get
    it?
-        * To obtain TCPSETUP: Log on to infant2.sphs.indiana.edu via
-        anonymous ftp. Change to directory /pub/doom/multi_doom/net.
-        Download the file TCPSET9B.ZIP. Version 0.9B is the latest
-        version of TCPSETUP as of this writing. The file named
-        TCPSETUP.ZIP is an older version which is both buggy and
-        incompatible with 0.9B - make sure you get the newer
-        version.
+   
+        * To obtain iDOOM: Log on to ftp.vet.uga.edu via anonymous
+        ftp. Change to directory /pub/doom. Download the file
+        IDOOM10.ZIP. Version 1.0 is the latest version of iDOOM as
+        of this writing. 
    
         * Many ethernet cards come with the appropriate packet
         drivers on a utilities diskette packaged with the card. If
@@ -173,7 +210,7 @@
    which case you can simply copy it over to your DOOM directory).
 
         When you have collected all this information, unzip the
-   TCPSET9B.ZIP file in your DOOM directory. Use your favorite ASCII
+   IDOOM10.ZIP file in your DOOM directory. Use your favorite ASCII
    text editor to edit the file called WATTCP.CFG. Edit or add the
    following lines in WATTCP.CFG:
    
@@ -181,28 +218,15 @@
    gateway=
    nameserver=
    netmask=
-   MSS=
    
    On our example machine, the WATTCP.CFG file looks like this:
    my_ip=128.192.23.5
    gateway=128.192.23.1
    netmask=255.255.255.0
    nameserver=128.192.44.67
-   MSS=256
    
    Save the changed file and exit back to DOS.
    
-        A short digression: The last line of the WATTCP.CFG file
-   specifies the MSS, or Maximum Segment Size, used by WATTCP when
-   sending and receiving IP packets across the Internet. The theory
-   behind a small MSS is that it can improve throughput in a game
-   like DOOM, which sends out lots and lots of tiny packets (usually
-   16 or so bytes in size). The jury is still out on whether or not
-   this actually helps; however, it won't HURT so I recommend that
-   you throw it in just in case. Some players who have tried the
-   MSS=256 trick have reported noticeable increase in speed and
-   playability of network games; feel free to do some experimenting
-   and find out for yourself.
    
         If you know your machine's IP address, but you can't find
    out the other values, you can often get away with some educated
@@ -210,11 +234,14 @@
    IP address ending in .1, as is the case with our example. Thus,
    if your IP address is xxx.yyy.zzz.www, try setting your gateway's
    IP address to xxx.yyy.zzz.1. As for the subnet mask, a common
-   value for this parameter is 255.255.255.0. Finally, if you don't
-   know your nameserver's IP address, you can probably get by
-   without it for the purposes of DOOM playing. Since you'll be
-   specifying IP addresses for all of your opponents' machines, a
-   nameserver lookup won't be necessary to resolve their addresses.
+   value for this parameter is 255.255.255.0. In some cases, the
+   gateway value can be something like xxx.yyy.1.1 with a
+   corresponding netmask value of 255.255.0.0 - if one doesn't work,
+   it can't hurt to try the other. Finally, if you don't know your
+   nameserver's IP address, you can probably get by without it for
+   the purposes of DOOM playing. Since you'll be specifying IP
+   addresses for all of your opponents' machines, a nameserver
+   lookup won't be necessary to resolve their addresses. 
    
         Step 3: Test your TCP/IP setup.
         Load your packet driver with the appropriate interrupt, IRQ,
@@ -279,7 +306,7 @@
    will be machine #1, which will be #2, which will be #3, and so
    on. Then each machine's command line follows the format
 
-   tcpsetup [game options] -net <machine_number> <IP_addresses>
+   iDOOM [game options] -net <machine_number> <IP_addresses>
 
         The IP addresses MUST appear in order, i.e. machine #1's IP
    address must appear FIRST in ALL command lines. Machine #2's IP
@@ -287,10 +314,10 @@
    puzzle is that each machine leaves it's own IP address out of the
    list. The result is a set of command lines like the following:
 
-   tcpsetup [options] -net 1 <machine2> <machine3> <machine4>
-   tcpsetup [options] -net 2 <machine1> <machine3> <machine4>
-   tcpsetup [options] -net 3 <machine1> <machine2> <machine4>
-   tcpsetup [options] -net 4 <machine1> <machine2> <machine3>
+   iDOOM [options] -net 1 <machine2> <machine3> <machine4>
+   iDOOM [options] -net 2 <machine1> <machine3> <machine4>
+   iDOOM [options] -net 3 <machine1> <machine2> <machine4>
+   iDOOM [options] -net 4 <machine1> <machine2> <machine3>
 
         Note that machine1, machine2, machine3, and machine4 are the
    numeric IP addresses of each respective machine in the iDOOM
@@ -307,17 +334,17 @@
    begin. On my machine, which we decided will be machine #1, I
    type:
 
-   tcpsetup -deathmatch -net 1 128.192.23.6 128.192.23.4
+   iDOOM -deathmatch -net 1 128.192.23.6 128.192.23.4
 
    The guy to my right, whose machine is #2 and whose IP address is
    128.192.23.6, types:
 
-   tcpsetup -deathmatch -net 2 128.192.23.5 128.192.23.4
+   iDOOM -deathmatch -net 2 128.192.23.5 128.192.23.4
 
    And finally the guy to my left (machine #3, IP address
    128.192.23.4) types:
 
-   tcpsetup -deathmatch -net 3 128.192.23.5 128.192.23.6
+   iDOOM -deathmatch -net 3 128.192.23.5 128.192.23.6
 
         After we all hit <ENTER>, our machines display "Looking for
    a Node..." then "Found a Node!" and after that the usual DOOM
@@ -328,19 +355,19 @@
    after you've gotten DOOM working on your own subnet, you're ready
    for the final step. Find a partner who is also capable of playing
    Internet DOOM. Watch the posts in alt.games.doom, or tune into
-   the #doom or #tcpdoom channels on irc. You and he will negotiate
-   game parameters, such as which map to play, which skill level,
-   and so on. You'll also decide on who will be -net 1 and who will
-   be -net 2 (experienced DEATHMATCHers will often try very hard to
-   avoid being -net 1, since that player's uniform is colored day-
-   glo green and is easier to spot in a DEATHMATCH). Now simply add
-   the parameters you've agreed on to the tcpsetup command line you
-   used before, making sure that the -net <n> <etc.> is the LAST
-   thing on the command line, and that the entire command line does
-   NOT exceed the 128 character limit imposed by DOS. A typical
+   the #doom, #tcpdoom or #iDOOM channels on irc. You and he will
+   negotiate game parameters, such as which map to play, which skill
+   level, and so on. You'll also decide on who will be -net 1 and
+   who will be -net 2 (experienced DEATHMATCHers will often try very
+   hard to avoid being -net 1, since that player's uniform is
+   colored day-glo green and is easier to spot in a DEATHMATCH). Now
+   simply add the parameters you've agreed on to the iDOOM command
+   line you used before, making sure that the -net <n> <etc.> is the
+   LAST thing on the command line, and that the entire command line
+   does NOT exceed the 128 character limit imposed by DOS. A typical
    command line will look something like
 
-   tcpsetup -skill 5 -nomonsters -deathmatch -net 2 128.192.55.666
+   iDOOM -skill 5 -nomonsters -deathmatch -net 2 128.192.55.666
 
 
                    Oh Oh - It's Not Working!
@@ -350,7 +377,7 @@
    to try in case of trouble.
 
         Q: My machine keeps looking for a node forever.
-        A: TCPSETUP searches for other game nodes in a very specific
+        A: iDOOM searches for other game nodes in a very specific
    way: It starts searching for the LAST player first, and then
    works its way backward. Thus, if you try to start a 4 player net
    game, but the 4th player has problems, NOBODY will find ANYBODY
@@ -359,20 +386,21 @@
 
         Q: I keep seeing this ICMP: port unreachable message on my
    screen.
+   
         A: This message is generated by the other machine when the
    port being requested by the sender is unavailable (in use) by the
    destination. I've seen this happen in some cases when I started
    looking for a node before the other player did. Once the other
    player began looking for a node also, the ICMP: messages went
    away, and the game linked up normally. If you see this message,
-   you might also want to try using a different port (see the
-   TCPSETUP documentation on the -port command line parameter).
+   you might also want to try using a different port (see the iDOOM
+   documentation on the -port command line parameter).
 
         Q: The music starts up fine, but all I see is a BSOD (Black
    Screen of Death).
         Q: My machine displays "sending network start info" or
    "listening for network start info" and then locks up.
-        A: TCPSETUP uses UDP packets to exchange game information
+        A: iDOOM uses UDP packets to exchange game information
    between all machines in the game. UDP packets are not guaranteed
    to reach their destination, and there is no mechanism for the
    sender to even be informed that what he sent never made to the
@@ -400,12 +428,101 @@
    VERY long distance connection attempt. The two ends found each
    other quickly, went through the entire startup sequence, only to
    have DOOM dump out immediately to DOS with the above error
-   message. Upgrading both ends of the connection from the DOOM 1.5
-   beta to the DOOM 1.6 beta resulted in a successful connection.
+   message. Upgrading both ends of the connection to DOOM 1.666
+   resulted in a successful connection.
+
+
+         Pointers and Tips for More Killing Enjoyment
+
+        We'd like to leave you with a few experiences and opinions
+   about long distance deathmatches.
+   
+        First, try not to use the "pause" key.  Do NOT use the pause
+   key just so you can type a message.  DO use the pause key if you
+   have to answer the phone. Do NOT release the pause after someone
+   else pauses.  It's hard to yell at someone over an IP connection. 
+   It really annoying to play against people who like to pause just
+   when they're about to be shot.  Argh!
+
+        Second, DO type messages.  A pause at the beginning of the
+   game is OK just to see if the other player is there.  If you
+   notice a sudden increase in game speed, the other player may have
+   aborted.  You might end up playing by yourself if you are not
+   watching... If you can monitor network traffic (I have a repeater
+   nearby that gets very busy when I play), notice the difference
+   between the amount of traffic when connected and disconnected.
+
+        Third, Be patient.  It sometimes takes 30-60 seconds for the
+   connection to complete.  The first phase, finding a node, should
+   be immediate.  As mentioned above, if you cannot find a node,
+   something is wrong.  The second phase, looking/sending network
+   start info, may take 30 seconds.  The third phase, sometimes a
+   blank screen just before the game loads, may take another 15-30
+   seconds.  After finding a node, please don't abort until you have
+   waiting a sufficient time for a connect. Also, if your connection
+   doesn't work the first time, try again immediately! If it failed
+   on your end, chances are it failed on the other end, also, and
+   your partner will be back "Looking for a Node..." and wondering
+   where you are.
+   
+        Forth, Internet games will self abort sometimes with errors. 
+   Don't panic, just restart the tcpsetup command line (writing a
+   batch file will save you from lots of typing and possible typos). 
+   Sometimes one of the computers will lock up - just restart.  If
+   you get tired of restarting (this doesn't happen much), just walk
+   away! It's just a game!
+   
+        Last, Pray for a fast connection. This isn't always a
+   problem, but when the connection is slow, the game sucks! There's
+   nothing you can do about it. Sometimes the game will speed up and
+   slow down throughout the match.  Such is the Internet.
+   Re-connection will not help.  Every packet that is sent back and
+   forth picks a new path and sometimes it's a fast path, and
+   sometimes not.
+
+                         iDOOM, IRC, and #doom
+
+        If you have access to Internet DOOM, then you can probably
+   access IRC. If you have an account on a UNIX machine, try typing
+   irc at the command prompt - chances are good that a client has
+   already been installed which you can access. If not, IRC clients
+   for your PC can be obtained via anonymous ftp from cs-ftp.bu.edu. 
+   One especially nice one (if you run Windows) is WSIRC. To meet
+   other players, join either the #tcpdoom of #iDOOM channel.  You
+   will be able to find iDOOM games here at almost any time of the
+   day or night. When you join, say "Hi" to everyone, then ask is
+   anyone is up for iDOOM DEATHMATCH. If you don't get any responses
+   right away, just hang out for a while and watch. Sooner or later
+   someone will sign on who would also like to play. Don't make the
+   mistake of re-posting your request every couple of minutes, or
+   bombarding everyone who joins the channel with your request -
+   such behavior will quickly annoy other users and may result in
+   your being flamed or even kicked off the channel. Don't worry
+   about missing any opportunities - other players who want a game
+   will most definitely follow the same procedure you did - they'll
+   ask the for a game shortly after joining the channel. When you
+   see the invitation, that is your cue to respond. You can then
+   send private /MSGs to set up the game, or jump to a new channel
+   to negotiate your game parameters. Also, if you're in a computer
+   lab (and thus have two machines right next to each other) you can
+   stay logged on to irc with one machine while you play iDOOM with
+   the other. This can come in VERY handy in case of connection
+   problems!
+
+                               A Quick Note about FRAGSERVERS
+   
+        FRAGSERVERS are a recent development. They facilitate iDOOM
+   connections between multiple players quickly and easily and with
+   a minimum of command line typing. To use the frag servers, you'll
+   need the file TCPSRV01.ZIP from one of the infant2 mirrors in the
+   /pub/doom/multi_doom/net directory. A couple of the more popular
+   fragservers can be found at ararat.cs.ucdavis.edu and
+   patriot.et.buy.edu. Both of these support 2, 3 and 4 player games
+   on ports 1666, 1667, and 1668 respectively.
    
         You call also compete in the ongoing TCP Doom Tourney.
    Contact Jay Cotton at jay@calc.vet.uga.edu for information on
-   joining the tourney.  You can also get help running tcpsetup and
+   joining the tourney.  You can also get help running iDOOM and
    meet the authors of many of the best wads and utilities on #doom.
-   Be warned! The IRC and tcpdoom can be VERY addictive. Don't lose
-   your "real" life just to play a game!
+   Be warned! The IRC and Internet DOOM can be VERY addictive. Don't
+   lose your "real" life just to play a game!
