@@ -1,33 +1,32 @@
                  The TCP/IP Internet DOOMer's FAQ
                 by Scott Coleman (asre@uiuc.edu)
              and Jay Cotton (jay@calc.vet.uga.edu)
-                            updated 9/25/94
+                            updated 10/16/94
 
 
                          Introduction
 
-        iD Software's DOOM is truly the Killer App of the MS-DOS
-   world. DOOM's popularity is so immense, it has been estimated
-   that DOOM is installed on more PCs than OS/2 and Windows NT
-   combined, and DOOM's creators commute to work in Ferarri
-   Testarossas. Interest in the game has been so great that it has
-   been hacked, reverse-engineered, dissected, and enhanced more
-   than any other game in PC history. And now, as more and more
-   people become hooked into the Internet, DOOM is rapidly becoming
-   the Killer App of the Internet, as well.
-
+   id Software's DOOM is truly the Killer App of the MS-DOS world.
+   DOOM's popularity is so immense, it has been estimated that DOOM
+   is installed on more PCs than OS/2 and Windows NT combined, and
+   DOOM's creators commute to work in Ferarris. Interest in the game
+   has been so great that it has been hacked, reverse-engineered,
+   dissected, and enhanced more than any other game in PC history.
+   And now, as more and more people become hooked into the Internet,
+   DOOM is rapidly becoming the Killer App of the Internet, as well.
+   
         Internet DOOM play is currently at the "clever hack" stage.
    DOOM, as released by iD, supports only IPX network play and
    serial play between two machines. As a result, the DOOM
    documentation doesn't include any information about DOOMing
-   across the net. Of course, this also means that DOOMers can't
-   call id for help. The result of all this is many curious people
-   asking the same question: How do I play DOOM over the Internet?
-   Enter this document. In the pages that follow, we will attempt to
-   answer the most frequently asked questions about iDOOM, including
-   what you need, how to set it up, and how to find new fragbait -
-   er, I mean, opponents.
-
+   across the Internet. Of course, this also means that DOOMers
+   can't call id for help. The result of all this is many curious
+   people asking the same question: How do I play DOOM over the
+   Internet? Enter this document. In the pages that follow, we will
+   attempt to answer the most frequently asked questions about
+   Internet DOOM, including what you need, how to set it up, and how
+   to find new fragbait - er, I mean, opponents.
+   
         DOOM across the Internet is made possible by a neat little
    freeware program called iDOOM. iDOOM uses the UDP protocol (part
    of the TCP/IP protocol suite) to send DOOM game information
@@ -46,68 +45,63 @@
    connecting two DOOM machines together across the Internet exist,
    this document will focus on direct net connections using the
    iDOOM network driver program.
-
-
-
+   
+   
+   
                         Getting Prepared
-
-   Q1: I want to play DOOM over the Internet using iDOOM. What
+   
+        Q1: I want to play DOOM over the Internet using iDOOM. What
    hardware do I need?
-
+   
         To successfully play DOOM across the Internet, you will need
    the following hardware:
-
+   
         * A machine capable of playing DOOM (D'OHH!) 
-
-        * An ethernet card. And not just any old ethernet card, mind 
-        you - your ethernet card must be supported by a packet
-        driver if you wish to use it to play Internet DOOM. This
-        document assumes that your PC is already equipped with a
-        functional ethernet card, although it may currently be in
-        use for some other non-TCP/IP function (such as a node on a
-        Novell network).
-
+   
+        * A network interface card (NIC). And not just any old NIC,
+        mind you - your NIC must be supported by a packet driver if
+        you wish to use it to play Internet DOOM. Usually this means
+        that your NIC must be an ethernet card, although iDOOM has
+        been successfully played over token ring. This document
+        assumes that your PC is already equipped with a suitable
+        NIC, although it may currently be in use for some other
+        non-TCP/IP function (such as a node on a Novell network).
+   
         * A direct connection to the Internet. If there is a modem
         somewhere in the link between your PC and your opponent's
         PC, this FAQ is not for you. Although it is possible to play
         Internet DOOM over a modem link (either by dialing up to a
         UNIX machine and using IHHD or via SLIP/PPP), such
         connection methods are beyond the scope of this document.  
-
-        * A MicroSoft-compatible mouse. OK, OK - so you don't REALLY
-        need a mouse to play iDOOM, but it does help you turn more
-        quickly, aim more accurately, and STOMP your keyboard-only
-        Internet DOOM opponents... ;-)
-
               
    
-   Q2: OK, I've got all the hardware. What software do I need?
+        Q2: OK, I've got all the hardware. What software do I need? 
                   
         In addition to the hardware requirements, some software is
    also required to round out your the package. Before you can play,
    you'll need to pick up the following:
    
-        * DOOM 1.2 or higher (1.666 is STRONGLY recommended, since
+        * DOOM 1.2 or higher (1.7 is STRONGLY recommended, since
         this version seems to have solved some problems related to
-        initializing network games). DOOM versions 1.1 and below are
-        incapable of using iDOOM.
+        network games). DOOM versions 1.1 and below are incapable of
+        using iDOOM.
    
         * A packet driver written specifically for your ethernet
         card. The Packet Driver is what lets iDOOM (and therefore
-        DOOM) "talk" to your ethernet card.
+        DOOM) "talk" to your NIC.
    
         * iDOOM.EXE, the Internet driver for DOOM.  
         
-        * The WATTCP Applications (not absolutely necessary, but can
-        definitely be useful for debugging and testing your setup).
-
+        * The WATTCP Applications. These are not absolutely
+        necessary, but can definitely be useful for debugging and
+        testing your setup. 
    
-   Q3: Hold it - I don't have some of this software! Where can I get
-   it?
+        Q3: Hold on - I don't have some of this software! Where can
+   I get it?
    
         * To obtain iDOOM: Log on to ftp.vet.uga.edu via anonymous
         ftp. Change to directory /pub/doom. Download the file
-        IDOOM10.ZIP. Version 1.0 is the latest version of iDOOM as
+        IDOOM11.ZIP. Version 1.1 is the latest version of iDOOM as
         of this writing. 
    
         * Many ethernet cards come with the appropriate packet
@@ -118,15 +112,15 @@
         You can obtain it via anonymous ftp from oak.oakland.edu.
         Change to the /pub/msdos/pktdrvr subdirectory and download
         PKTD11.ZIP and PKTD11C.ZIP. The files PKTD11A.ZIP and
-        PKTD11B.ZIP contain source code for the packet drivers and
-        example programs - you won't need these in order to play
+        PKTD11B.ZIP contain source code and example programs for the
+        packet drivers - you won't need these in order to play
         iDOOM.
    
         * To obtain the WATTCP applications, ftp to
         dorm.rutgers.edu, change to the /pub/msdos/wattcp/
         subdirectory, and download file APPS.ZIP.
                   
-   Q4: OK, I've got everything, now what do I do to set it up?
+        Q4: OK, I've got everything, now what do I do to set it up? 
    
         Setting your computer up for TCP/IP access is very
    straightforward. As an illustration, I'll be taking you through
@@ -142,15 +136,18 @@
    the former, and the latter will probably conflict with the packet
    driver. We recommend that you prepare a boot floppy with a
    CONFIG.SYS containing only a FILES=20 line, and an AUTOEXEC.BAT
-   containing only prompt=$p$g.
+   containing only the line "prompt=$p$g".
    
-        Step 1: Set up the packet driver.
-        Determine your ethernet card's IRQ setting, it's base I/O
-   port setting, and it's memory address setting (if any). You
-   should be able to determine this by looking at the card itself
-   and consulting the user manual. You'll need some if not all of
-   this information, depending upon which packet driver you use.
-   Unzip the appropriate driver from Crynwr Packet Driver collection
+        Step 1: Set up the packet driver. Determine your ethernet
+   card's IRQ setting, it's base I/O port setting, and it's memory
+   address setting (if any). You should be able to determine this by
+   looking at the card itself and consulting the user manual. You'll
+   need some if not all of this information, depending upon which
+   packet driver you use and/or type of hardware you have (for
+   example, some IBM computers with the MicroChannel bus can
+   determine the settings on the card automatically without you
+   having to supply them on the packet driver command line). Unzip
+   the appropriate driver from Crynwr Packet Driver collection
    archive. In our example case, the packet driver is called
    SMC_WD.COM. By looking at the jumpers on the card and consulting
    the manual, I determined that the card has been set to IRQ 7,
@@ -160,9 +157,10 @@
    interrupt in the range of 60h to 80h inclusive; since nothing
    else in my sample system happens to be using the first available
    interrupt (INT 60h), I chose that. Thus, to load my packet
-   driver, I use the following command line:
+   driver, I use the command line
    
-   SMC_WD 0x60 0x7 0x300 0xd800
+   
+        SMC_WD 0x60 0x7 0x300 0xd800
    
    where 0x60 is the packet driver interrupt, 0x7 is the IRQ setting
    on the card, 0x300 is the I/O port base address, and 0xd800 is
@@ -177,65 +175,65 @@
    Novell). 
    
         At the very minimum, the packet driver should give a sign on
-   message and report the ethernet address of your NIC (Network
-   Interface Card) when you load it. Chances are that if your
-   ethernet card has been functioning properly for other tasks (e.g.
-   as a node on a Novell network) then you'll have no problems here. 
-   If not, or if there are any error or warning messages, something
-   is wrong. One possibility is that one of the settings on your
-   ethernet card is in conflict with those of another adapter card
-   in your system. No two adapter cards can have the same IRQ, I/O
-   port, or memory address settings, nor can the memory areas of two
-   cards overlap. Whatever the cause, you'll need to correct the
-   problem before continuing.
+   message and report the ethernet address of your NIC when you load
+   it. Chances are that if your NIC has been functioning properly
+   for other tasks (e.g. as a node on a Novell network) then you'll
+   have no problems here. If not, or if there are any error or
+   warning messages, something is wrong. One possibility is that one
+   of the settings on your NIC is in conflict with those of another
+   expansion card in your system. No two cards can have the same
+   IRQ, I/O port, or memory address settings, nor can the memory
+   areas of two cards overlap. Whatever the cause, you'll need to
+   find and correct the problem before continuing.
    
-        Step 2: Set up your WATTCP.CFG file. 
-        Your WATTCP.CFG file contains important parameters used by
-   the WATTCP TCP/IP kernel. These values MUST be entered correctly
-   if you wish to make a connection with another DOOM PC. In
-   preparation for this, you'll need several bits of information.
-   Contact the network administrator for your site and find out the
-   IP address for your machine, the IP address for your gateway or
-   router, the IP address of at least one Domain Name Server local
-   to your site, and your netmask value. The three IP addresses will
-   each consist of four groups of digits separated by periods. In
-   our example, the machine's IP address is 128.192.23.5, the
-   gateway is 128.192.23.1, the netmask is 255.255.255.0, and the
-   nameserver address is 128.192.44.67. NOTE: it is important to use
-   the numeric IP addresses, not the actual host names. NOTE: If you
+        Step 2: Set up your WATTCP.CFG file. Your WATTCP.CFG file
+   contains important parameters used by the WATTCP TCP/IP kernel.
+   These values MUST be entered correctly if you wish to make a
+   connection with another DOOM PC. In preparation for this, you'll
+   need several bits of information. Contact the network
+   administrator for your site and find out the IP address for your
+   machine, the IP address for your gateway or router, the IP
+   address of at least one Domain Name Server local to your site,
+   and your netmask value. The three IP addresses will each consist
+   of four groups of digits separated by periods. In our example,
+   the machine's IP address is 128.192.23.5, the gateway is
+   128.192.23.1, the netmask is 255.255.255.0, and the nameserver
+   address is 128.192.44.67. NOTE: it is important to use the
+   numeric IP addresses, not the actual host names. NOTE: If you
    have other Internet programs currently installed on your machine,
-   such as Gopher or the Trumpet newsreader, you can probably get
-   the information you need from the configuration files you need
-   for those programs (some will even use their own WATTCP.CFG, in
-   which case you can simply copy it over to your DOOM directory).
-
-        When you have collected all this information, unzip the
-   IDOOM10.ZIP file in your DOOM directory. Use your favorite ASCII
-   text editor to edit the file called WATTCP.CFG. Edit or add the
-   following lines in WATTCP.CFG:
+   such as a Gopher client or the Trumpet newsreader, you can
+   probably find the information you need in the configuration files
+   used for those programs. If the application is based on the
+   Waterloo TCP package, it will have it's own WATTCP.CFG, in which
+   case you can simply copy it over to your DOOM directory. When you
+   have collected all this information, unzip the iDOOM distribution
+   archive (e.g. IDOOM11.ZIP) into your DOOM (or DOOM2) directory.
+   Use your favorite ASCII text editor to edit the file called
+   WATTCP.CFG. Edit or add the following lines in WATTCP.CFG:
    
    my_ip=
    gateway=
    nameserver=
    netmask=
    
-   On our example machine, the WATTCP.CFG file looks like this:
+        On our example machine, the WATTCP.CFG file looks like this: 
+        
    my_ip=128.192.23.5
    gateway=128.192.23.1
    netmask=255.255.255.0
    nameserver=128.192.44.67
    
-   Save the changed file and exit back to DOS.
+        Save the changed file and exit back to DOS.
    
    
-        If you know your machine's IP address, but you can't find
-   out the other values, you can often get away with some educated
-   guesswork. For instance, the gateway for a subnet usually has an
-   IP address ending in .1, as is the case with our example. Thus,
-   if your IP address is xxx.yyy.zzz.www, try setting your gateway's
-   IP address to xxx.yyy.zzz.1. As for the subnet mask, a common
-   value for this parameter is 255.255.255.0. In some cases, the
-   gateway value can be something like xxx.yyy.1.1 with a
+        If you know your machine's IP address, but you can't
+   determine the other values, you can often get away with some
+   educated guesswork. For instance, the gateway for a subnet
+   usually has an IP address ending in .1, as is the case with our
+   example. Thus, if your IP address is xxx.yyy.zzz.www, try setting
+   your gateway's IP address to xxx.yyy.zzz.1. As for the subnet
+   mask, a common value for this parameter is 255.255.255.0. In some
+   cases, the gateway value can be something like xxx.yyy.1.1 with a
    corresponding netmask value of 255.255.0.0 - if one doesn't work,
    it can't hurt to try the other. Finally, if you don't know your
    nameserver's IP address, you can probably get by without it for
@@ -243,11 +241,10 @@
    addresses for all of your opponents' machines, a nameserver
    lookup won't be necessary to resolve their addresses. 
    
-        Step 3: Test your TCP/IP setup.
-        Load your packet driver with the appropriate interrupt, IRQ,
-   I/O and memory addresses. Next, unzip the TCPINFO and PING
-   programs from the WATTCP apps archive into your DOOM directory.
-   At the DOS prompt, type:
+        Step 3: Test your TCP/IP setup. Load your packet driver with
+   the appropriate interrupt, IRQ, I/O and memory addresses. Next,
+   unzip the TCPINFO and PING programs from the WATTCP apps archive
+   into your DOOM directory. At the DOS prompt, type:
    
              TCPINFO    
    
@@ -263,20 +260,21 @@
    
         PING <yourgateway's.numeric.ip.address>
    
-   and press the <Enter> key. After a brief delay, you should see a 
+   and press the <Enter> key. After a brief delay, you should see a
    message telling you that the host is responding, as well as the
    round trip time for PING's test packets. If you see the "Timeout"
    error message, then something is wrong with your setup; if your
    PC is unable to reach your gateway, it will be unable to reach
-   the rest of the Internet, as well. For our sample system, we
-   would type:
+   the rest of the Internet as well, since all network packets which
+   are sent to nodes outside of your local area network must pass
+   through your gateway. For our sample system, we would type:
    
              ping 128.192.23.1
    
-        If your gateway PING was successful, try PINGing your Domain
-   Name Server (at the IP address you specified in WATTCP.CFG) as
-   well as some well-known site on the internet (e.g. infant2, which
-   is at IP address 129.79.234.115). These will test your machine's
+   If your gateway PING was successful, try PINGing your Domain Name
+   Server (at the IP address you specified in WATTCP.CFG) as well as
+   some well-known site on the internet (e.g. infant2, which is at
+   IP address 129.79.234.115). These will test your machine's
    ability to connect with other machines outside of your subnet as
    well as those outside of your site. All of these PINGs should
    result in a "host responding" message with a response time. If
@@ -290,239 +288,317 @@
 
         ping 129.79.234.115
 
-
-             Put Me in, Coach - I'm Ready to Play!
-
-        OK, if you've made it this far, you're now ready for the
-   main event: an actual game of DOOM! For this first attempt, it's
+   
+             Put Me in, Coach - I'm Ready to Play! 
+        First, go find up to three of your most patient frag
+   buddies. Since this is your first attempt at Internet DOOM, it's
    best to try and find someone on your local network who's willing
    to put in a little frag time with you. Connections on your local
-   net will be faster and less problematic, whereas if you attempt
-   as long distance connection your first time out, you'll have a
-   hard time discerning problems caused by distance from problems
-   caused by an incorrect configuration.
-
-        In general, the players will decide beforehand which machine
-   will be machine #1, which will be #2, which will be #3, and so
-   on. Then each machine's command line follows the format
-
-   iDOOM [game options] -net <machine_number> <IP_addresses>
-
-        The IP addresses MUST appear in order, i.e. machine #1's IP
-   address must appear FIRST in ALL command lines. Machine #2's IP
-   address must appear SECOND, and so on. The final piece to the
-   puzzle is that each machine leaves it's own IP address out of the
-   list. The result is a set of command lines like the following:
-
-   iDOOM [options] -net 1 <machine2> <machine3> <machine4>
-   iDOOM [options] -net 2 <machine1> <machine3> <machine4>
-   iDOOM [options] -net 3 <machine1> <machine2> <machine4>
-   iDOOM [options] -net 4 <machine1> <machine2> <machine3>
-
-        Note that machine1, machine2, machine3, and machine4 are the
-   numeric IP addresses of each respective machine in the iDOOM
-   session.
-
-        In our example scenario, the computer is part of a local
-   area network in a computer lab. Thus, there are identical
-   machines sitting immediately beside my test machine, with IP
-   addresses one off from my own, i.e. the test machine has IP
-   address 128.192.23.5, the machine to the right has IP address
-   128.192.23.6, and the one to the left is 128.192.23.4. After
-   stepping through the basic configuration process outlined above
-   on the other test machines, my frag buddies and I are ready to
-   begin. On my machine, which we decided will be machine #1, I
-   type:
-
-   iDOOM -deathmatch -net 1 128.192.23.6 128.192.23.4
-
-   The guy to my right, whose machine is #2 and whose IP address is
-   128.192.23.6, types:
-
-   iDOOM -deathmatch -net 2 128.192.23.5 128.192.23.4
-
-   And finally the guy to my left (machine #3, IP address
-   128.192.23.4) types:
-
-   iDOOM -deathmatch -net 3 128.192.23.5 128.192.23.6
-
-        After we all hit <ENTER>, our machines display "Looking for
-   a Node..." then "Found a Node!" and after that the usual DOOM
-   startup information. Shortly thereafter, the screen melts away
-   and there we are, in E1M1, pistols at the ready!
-
+   net will be faster and less problematic, whereas if you attempt a
+   long distance connection your first time out, you'll have a hard
+   time discerning problems caused by distance from problems caused
+   by an incorrect configuration.
+   
+        Decide amongst yourselves which machine will be the "server"
+   (the remaining machines in the game will all be "clients"). The
+   server machine (and there can only be ONE server per game) acts
+   as the coordinator for that session. The player operating the
+   server is in some sense "the boss" - she can decide when to start
+   the game, which parameters (e.g. -altdeath, -nomonsters, -warp, -
+   skill, etc.) will be used, whether to kick a player out, and so
+   on.
+   
+        The server starts iDOOM as follows:
+   
+   iDOOM -server [other game parameters]
+   
+        Once the server has started iDOOM running, the clients (all
+   remaining players) can then connect to the server. Each client
+   invokes iDOOM using the command line:
+   
+   iDOOM -client <server_address>
+   
+        As an example, consider several computers which are part of
+   a local area network in a computer lab. In this lab there are
+   identical machines sitting side by side, with sequential IP
+   addresses, i.e. 128.192.23.4, 128.192.23.5, and 128.192.23.6.
+   After stepping through the basic configuration process outlined
+   above on all test machines, my frag buddies and I are ready to
+   begin. First, we all agree to play our favorite DEATHMATCH level,
+   DOOM I episode 1 map 5. We also agree to play in -altdeath mode,
+   with -skill 5 and -nomonsters. On my machine, which we decided
+   will be the server, I type:
+   
+   iDOOM -server -warp 1 5 -altdeath -skill 5 -nomonsters
+   
+        The iDOOM screen comes up, and a message is displayed
+   informing me that iDOOM is entering server mode. This screen is
+   divided into several sections: the credits, the output window,
+   the status bar, and the input line. At the top of the screen is
+   the name of the program, its version number, and the copyright
+   notice. The large area beginning with the second screen line and
+   continuing to the 22nd screen line is the output window. Here is
+   where iDOOM will display all status messages as well as the chat
+   text entered by the other players. Below the output window is the
+   status bar, where the current game settings are displayed. Below
+   the status bar is the input line where all the text I type on my
+   keyboard will appear. Finally, the bottom line of the screen
+   lists significant contributors to iDOOM.
+   
+        Once my iDOOM server is up and running, all the other
+   players can connect to it. The other guys type:
+   
+   iDOOM -client 128.192.23.5
+   
+        Each client's screen layout is identical to that of my
+   server. iDOOM displays a message confirming that it is entering
+   client mode and connecting to the server. As each client's
+   connection is established, the arrival of each player is
+   announced by the server. 
+   
+        During this phase of the game setup, all players who have
+   connected thus far can type messages to each other using iDOOM's
+   built-in chat facility. To send a message to the other players in
+   the game, I simply type my message on the keyboard. My keystrokes
+   appear in the input line at the bottom of the screen, and when I
+   press <ENTER>, the text will be echoed to the screens of all
+   players (along with an indication of who sent the message). The
+   identical procedure can be used to send messages from each of the
+   client machines. The server itself will also send messages.
+   Messages from the server will begin with three asterisks ("***"). 
+   
+        When a client connects to the iDOOM server, the client
+   receives a message containing the game parameters which will be
+   used during that session. These game settings will be displayed
+   on the status bar. The settings are abbreviated to ensure that
+   they will all fit within the available space. These game settings
+   may be changed interactively at the server console.
+   
+        My friend sees that I have selected E1M5 as the default
+   episode and map for our game. He reminds me that we've been
+   playing that one a lot lately, and suggests we change to E2M2
+   since we haven't played that one in a while. I agree, and issue
+   the commands /episode 2 and /map 2 to change the level. Our
+   status lines are immediately updated to reflect these changes.
+   
+        Once I have determined (via the chat facility) that everyone
+   is ready to begin the game, I press the F10 key. The iDOOM server
+   signals the clients that the game is beginning, the chat facility
+   is shut down, and iDOOM sets up the connections which will be
+   used for the actual game. Once these network links are
+   established between all the machines, the message "Prepare to
+   meet your DOOM!" is displayed, followed by the usual DOOM startup
+   information. Shortly thereafter, the screen melts away and there
+   we are, in E1M5, pistols at the ready! 
+   
         Give your buddies a good thrashing - you've earned it! Now,
    after you've gotten DOOM working on your own subnet, you're ready
    for the final step. Find a partner who is also capable of playing
    Internet DOOM. Watch the posts in alt.games.doom, or tune into
    the #doom, #tcpdoom or #iDOOM channels on irc. You and he will
    negotiate game parameters, such as which map to play, which skill
-   level, and so on. You'll also decide on who will be -net 1 and
-   who will be -net 2 (experienced DEATHMATCHers will often try very
-   hard to avoid being -net 1, since that player's uniform is
-   colored day-glo green and is easier to spot in a DEATHMATCH). Now
-   simply add the parameters you've agreed on to the iDOOM command
-   line you used before, making sure that the -net <n> <etc.> is the
-   LAST thing on the command line, and that the entire command line
-   does NOT exceed the 128 character limit imposed by DOS. A typical
+   level, and so on. You'll also decide on who will be the server
+   and who will be the clients (experienced DEATHMATCHers will often
+   try very hard to avoid being the server, since that player's
+   uniform is colored day-glo green and is easier to spot in a
+   DEATHMATCH). Now simply add the parameters you've agreed on to
+   the iDOOM server command line you used before. A typical          
    command line will look something like
-
-   iDOOM -skill 5 -nomonsters -deathmatch -net 2 128.192.55.666
-
-
+   
+             iDOOM -server -skill 5 -nomonsters -deathmatch 
+   
+   
                    Oh Oh - It's Not Working!
-
-        OK, so you've done everything, just like I've shown you, but
-   you're still having problems. The following are some suggestions
-   to try in case of trouble.
-
-        Q: My machine keeps looking for a node forever.
-        A: iDOOM searches for other game nodes in a very specific
-   way: It starts searching for the LAST player first, and then
-   works its way backward. Thus, if you try to start a 4 player net
-   game, but the 4th player has problems, NOBODY will find ANYBODY
-   ELSE. This behavior can be very misleading and confusing to those
-   caught unawares.
-
-        Q: I keep seeing this ICMP: port unreachable message on my
+   
+             OK, so you've done everything, just like I've shown
+   you, but you're still having problems. The following are some
+   suggestions to try in case of trouble.
+   
+        Q: When I try to connect to the iDOOM server it returns to
+   DOS saying "Server is not responding" or "Remote reset
+   connection."
+   
+        A: This means that the player on the server machine hasn't
+   yet  started the iDOOM server. The server must be started before
+   the clients try to connect to it. Try again in a few seconds.
+   
+   
+        Q: I keep seeing an "ICMP: port unreachable" message on my
    screen.
    
         A: This message is generated by the other machine when the
-   port being requested by the sender is unavailable (in use) by the
-   destination. I've seen this happen in some cases when I started
-   looking for a node before the other player did. Once the other
-   player began looking for a node also, the ICMP: messages went
-   away, and the game linked up normally. If you see this message,
-   you might also want to try using a different port (see the iDOOM
-   documentation on the -port command line parameter).
-
+   port being requested by the sender is unavailable on the          
+   destination machine. I've seen this happen in some cases when I
+   started iDOOM before the other player did. Once the other iDOOM
+   was running, the ICMP: messages went away, and the game linked up
+   normally. If you see this message, you might also want to try
+   using a different port (see the iDOOM documentation on the -port
+   command line parameter). 
+   
         Q: The music starts up fine, but all I see is a BSOD (Black
    Screen of Death).
         Q: My machine displays "sending network start info" or
-   "listening for network start info" and then locks up.
-        A: iDOOM uses UDP packets to exchange game information
+   "listening for network start info" and then locks up. 
+   
+        A: This problem can have several causes. Perhaps the server
+   specified a DOOM II game, but one of the players didn't have DOOM
+   II. Perhaps one of the other players' machines is slower than the
+   others, or has a fragmented disk and takes a longer time to load
+   DOOM at startup. Or perhaps some packets were lost - iDOOM uses
+   UDP (user Datagram Protocol) packets to exchange game information
    between all machines in the game. UDP packets are not guaranteed
    to reach their destination, and there is no mechanism for the
-   sender to even be informed that what he sent never made to the
-   destination machine. DOOM has its own internal error detection
-   and correction schemes, so this ordinarily isn't a problem -
-   EXCEPT, apparently, at game startup. For whatever reason, DOOM
-   appears to be extremely vulnerable to dropped packets during the
-   game startup arbitration. This can result in some machines
-   getting as far as "sending network start info" but never getting
-   a response (if the response packet was lost) or in a node
-   "listening for network start info" forever, since the network
-   start info packet fell into a bit bucket somewhere along the way.
-   One thing to do is make sure that you're waiting long enough
-   before giving up and declaring your machine locked. In some
-   cases, especially those involving multiple players and/or long
-   distances, it can take quite some time for all machines involved
-   to sync up. Give it a full minute before you give up.
-
-    In some cases a machine will even get as far as clearing the
-   graphics mode screen and starting up the music track, but will
-   lose the game at that point.
-
-        Q: What does "game mode indeterminate" mean?
-        A: The author has only seen this error message once, on a
-   VERY long distance connection attempt. The two ends found each
-   other quickly, went through the entire startup sequence, only to
-   have DOOM dump out immediately to DOS with the above error
-   message. Upgrading both ends of the connection to DOOM 1.666
-   resulted in a successful connection.
-
-
-         Pointers and Tips for More Killing Enjoyment
-
+   sender to even be informed that what it sent never made to the
+   destination machine. iDOOM is designed to compensate for these
+   lost packets to the extent possible, and occasionally this
+   detection and correction takes a few extra seconds. You should
+   always wait for at least 30 - 45 seconds for the other DOOM
+   engines to sync up before you abort the setup. 
+   
+   
+         Pointers and Tips for More Fragging Enjoyment 
+   
         We'd like to leave you with a few experiences and opinions
-   about long distance deathmatches.
+   about Internet deathmatches.
    
-        First, try not to use the "pause" key.  Do NOT use the pause
-   key just so you can type a message.  DO use the pause key if you
-   have to answer the phone. Do NOT release the pause after someone
-   else pauses.  It's hard to yell at someone over an IP connection. 
-   It really annoying to play against people who like to pause just
+        First, try not to use the "pause" key. Do NOT use the pause
+   key just so you can type a message. DO use the pause key if you
+   have to answer the phone; either find a hiding place to hole up,
+   or if you are fragged, just stay dead (don't hiot the spacebar)
+   until your call is completed. It's inconsiderate to make everyone
+   else wait on you. Do NOT release the pause after someone else
+   pauses.  It's hard to yell at someone over an IP connection. It's
+   really annoying to play against people who like to pause just
    when they're about to be shot.  Argh!
-
-        Second, DO type messages.  A pause at the beginning of the
+   
+        Second, DO type messages. A pause at the beginning of the
    game is OK just to see if the other player is there.  If you
-   notice a sudden increase in game speed, the other player may have
-   aborted.  You might end up playing by yourself if you are not
-   watching... If you can monitor network traffic (I have a repeater
-   nearby that gets very busy when I play), notice the difference
-   between the amount of traffic when connected and disconnected.
-
-        Third, Be patient.  It sometimes takes 30-60 seconds for the
-   connection to complete.  The first phase, finding a node, should
-   be immediate.  As mentioned above, if you cannot find a node,
-   something is wrong.  The second phase, looking/sending network
-   start info, may take 30 seconds.  The third phase, sometimes a
-   blank screen just before the game loads, may take another 15-30
-   seconds.  After finding a node, please don't abort until you have
-   waiting a sufficient time for a connect. Also, if your connection
-   doesn't work the first time, try again immediately! If it failed
-   on your end, chances are it failed on the other end, also, and
-   your partner will be back "Looking for a Node..." and wondering
-   where you are.
+   notice a sudden increase in game speed, another player may have
+   aborted or crashed. You might end up playing by yourself if you
+   are not alert... If you can monitor network traffic (I have a
+   repeater nearby that gets very busy when I play), notice the
+   difference between the amount of traffic when connected and
+   disconnected. 
    
-        Forth, Internet games will self abort sometimes with errors. 
-   Don't panic, just restart the tcpsetup command line (writing a
-   batch file will save you from lots of typing and possible typos). 
-   Sometimes one of the computers will lock up - just restart.  If
-   you get tired of restarting (this doesn't happen much), just walk
-   away! It's just a game!
+        Third, Be patient. It sometimes takes 30-60 seconds for the
+   connection to complete. The first phase, finding a node, should
+   be immediate. As mentioned above, if you cannot find a node,
+   something is wrong. The second phase, looking/sending network
+   start info, may take 30 seconds, longer if one of the players has
+   a slow or fragmented hard disk (this is the phase where DOOM
+   loads the info it needs to play from the WAD file(s)).  The third
+   phase, sometimes a blank screen just before the game loads, may
+   take another 15-30 seconds.  After finding a node, please don't
+   abort until you have waiting a sufficient time for a connect.
+   Also, if your connection doesn't work the first time, try again
+   immediately! If it failed on your end, chances are it failed on
+   the other end, also, and your partner will be back in iDOOM
+   trying to connect and wondering where you are.
    
-        Last, Pray for a fast connection. This isn't always a
+        Forth, Internet games will self abort sometimes with errors.
+   Don't panic, just restart iDOOM. Sometimes one of the computers
+   will lock up - again, just restart. If you get tired of
+   restarting (this doesn't happen much), just walk away! It's just
+   a game!
+   
+        Last, hope for a fast connection. This isn't always a
    problem, but when the connection is slow, the game sucks! There's
    nothing you can do about it. Sometimes the game will speed up and
    slow down throughout the match.  Such is the Internet.
-   Re-connection will not help.  Every packet that is sent back and
-   forth picks a new path and sometimes it's a fast path, and
-   sometimes not.
-
-                         iDOOM, IRC, and #doom
-
-        If you have access to Internet DOOM, then you can probably
-   access IRC. If you have an account on a UNIX machine, try typing
-   irc at the command prompt - chances are good that a client has
-   already been installed which you can access. If not, IRC clients
-   for your PC can be obtained via anonymous ftp from cs-ftp.bu.edu. 
-   One especially nice one (if you run Windows) is WSIRC. To meet
-   other players, join either the #tcpdoom of #iDOOM channel.  You
-   will be able to find iDOOM games here at almost any time of the
-   day or night. When you join, say "Hi" to everyone, then ask is
-   anyone is up for iDOOM DEATHMATCH. If you don't get any responses
-   right away, just hang out for a while and watch. Sooner or later
-   someone will sign on who would also like to play. Don't make the
-   mistake of re-posting your request every couple of minutes, or
-   bombarding everyone who joins the channel with your request -
-   such behavior will quickly annoy other users and may result in
-   your being flamed or even kicked off the channel. Don't worry
-   about missing any opportunities - other players who want a game
-   will most definitely follow the same procedure you did - they'll
-   ask the for a game shortly after joining the channel. When you
-   see the invitation, that is your cue to respond. You can then
-   send private /MSGs to set up the game, or jump to a new channel
-   to negotiate your game parameters. Also, if you're in a computer
-   lab (and thus have two machines right next to each other) you can
-   stay logged on to irc with one machine while you play iDOOM with
-   the other. This can come in VERY handy in case of connection
-   problems!
-
-                               A Quick Note about FRAGSERVERS
+   Re-connection will not help. Every packet that is sent back and
+   forth picks a new path; sometimes it's a fast path, and sometimes
+   not.
    
-        FRAGSERVERS are a recent development. They facilitate iDOOM
+   
+   Finding Other iDOOM Players
+   
+        There are many ways to find opponents for your TCP/IP
+   Internet DOOM games. One is to contact your friends who play DOOM
+   and arrange a time for a game. However, everyone will
+   occasionally find times when nobody they know is available to
+   play. Fortunately, there are some virtual equivalents to walking
+   down to the basketball court and joining a pickup game. 
+   
+   
+                                       IRC
+   
+        If your setup is capable of Internet DOOM, then you can
+   probably also use IRC, the Internet Relay Chat. If you have an
+   account on a UNIX machine, try typing irc at the command prompt -
+   chances are good that a client has already been installed which
+   you can access. If not, IRC clients for your PC can be obtained
+   via anonymous ftp from cs-ftp.bu.edu. One especially nice one (if
+   you run Windows) is WSIRC. To meet other players, join either the
+   #tcpdoom of #iDOOM channel - the sole purpose of these channels
+   if for Internet DOOM players to meet other players and arrange
+   games. The #doom channel is for more general discussions of DOOM.
+   Although some people also arrange games there, #tcpdoom is the
+   preferred meeting place. You will be able to find iDOOM games
+   here at almost any time of the day or night. 
+   
+        When you /join the channel, be friendly. Say "Hi" to
+   everyone, then ask is anyone is up for iDOOM DEATHMATCH. If you
+   don't get any responses right away, just hang out for a while and
+   watch, or engage in some random chit-chat. The people currently
+   on the channel might be already be playing a game (/away), and
+   thus cannot respond to your invitation immediately. It's quite
+   common for players who have two machines to use one as an irc
+   terminal and the other for playing DOOM. Thus, they may not be
+   looking at their irc screen when you first sign on. Sooner or
+   later, though, someone will sign on (or return) who would also
+   like to play. Don't make the mistake of re-posting every couple
+   of minutes, or bombarding everyone who joins the channel with
+   your request - such behavior will quickly annoy other users and
+   may result in your being flamed or even kicked off the channel.
+   Don't worry about missing any opportunities - other players who
+   want a game will most definitely follow the same procedure you
+   did - they'll ask the for a game shortly after joining the
+   channel. When you see the invitation, that is your cue to
+   respond. You can then negotiate your game parameters. Also, if
+   you're in a computer lab (and thus have two machines right next
+   to each other) you can stay logged on to irc with one machine
+   while you play iDOOM with the other, as mentioned above. This can
+   come in VERY handy in case of connection problems!
+   
+   
+                           Frag Servers/Frag Trackers
+   
+        Frag Servers are a recent development. They facilitate iDOOM
    connections between multiple players quickly and easily and with
-   a minimum of command line typing. To use the frag servers, you'll
-   need the file TCPSRV01.ZIP from one of the infant2 mirrors in the
-   /pub/doom/multi_doom/net directory. A couple of the more popular
-   fragservers can be found at ararat.cs.ucdavis.edu and
-   patriot.et.buy.edu. Both of these support 2, 3 and 4 player games
-   on ports 1666, 1667, and 1668 respectively.
+   a minimum of command line typing. Current versions of the Frag
+   Servers are very similar to the server built into iDOOM. NOTE: An
+   iDOOM client can NOT connect to a Frag Server. Frag Servers have
+   their own client program which then loads iDOOM as the network
+   driver. 
    
-        You call also compete in the ongoing TCP Doom Tourney.
+        As of this writing, the latest version of the frag
+   client/server package is TCPSRV12.ZIP, available from one of the
+   infant2 mirrors in the /pub/doom/multi_doom/net directory. A
+   couple of the more popular fragservers can be found at
+   ararat.cs.ucdavis.edu and patriot.et.buy.edu. Both of these
+   support 2, 3 and 4 player games on ports 1666, 1667, and 1668
+   respectively.
+   
+        Future versions of the Frag Servers (which will be known as
+   Frag Trackers) will serve as online meeting places where DOOM
+   players can log on, see a list of games which are awaiting
+   players, and either join an existing game or register a new game.
+   Waiting players will be able to send chat messages to each other,
+   negotiate and set game parameters, check connection quality, etc.
+   Although this exciting capability does not exist in the current
+   Frag Servers, it will be available sometime in the near future,
+   and will revolutionize the way Internet DOOM is played.
+   
+   
+                      The TCP/IP DOOM Tournament
+   
+        You call also compete in the ongoing TCP/IP Doom Tourney.
    Contact Jay Cotton at jay@calc.vet.uga.edu for information on
-   joining the tourney.  You can also get help running iDOOM and
-   meet the authors of many of the best wads and utilities on #doom.
-   Be warned! The IRC and Internet DOOM can be VERY addictive. Don't
-   lose your "real" life just to play a game!
+   joining the tourney. Jay maintains a ranked listing of active
+   Internet DOOM players as well as an Internet DOOMer's mailing
+   list.
+   
+                        A Final Thought
+   
+        The TCP/IP Internet DOOM and the IRC can be VERY addictive.
+   Have fun, but don't lose your "real" life just to play a game!
