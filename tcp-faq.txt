@@ -1,26 +1,25 @@
                  The TCP/IP Internet DOOM FAQ
-               by Scott Coleman (asre@uiuc.edu)
+                 by Scott Coleman (asre@ni.net)
              and Jay Cotton (jay@calc.vet.uga.edu)
-                        updated 4/8/95
+                        updated 10/23/95
                            
 
                          Introduction
 
-        id Software's DOOM, DOOM II, and Heretic truly are
-   the Killer Apps of the MS-DOS world. The popularity of
-   these games is so immense, it has been estimated that
-   DOOM is installed on more PCs than OS/2 and Windows NT
-   combined. So many copies of these games have been sold
-   that the idGuys can commute to work in Ferarris. Interest
-   in these games has been so great that they have been
-   hacked, reverse-engineered, dissected, and enhanced more
-   than any other games in PC history. And now, as more and
-   more people become hooked into the Internet, DOOM-engine
-   games are rapidly becoming the Killer Apps of the 'net,
-   as well. Although the remainder of this document will
-   refer exclusively to DOOM, the procedures outlined here
-   will work equally well for either DOOM II or Heretic, as
-   well.
+        The popularity of id Software's DOOM, DOOM II,
+   Heretic, and the new sequel Hexen are so immense, it has
+   been estimated that DOOM is installed on more PCs than
+   OS/2 and Windows NT combined. So many copies of these
+   games have been sold that the idGuys can commute to work
+   in Ferarris. Interest in these games has been so great
+   that they have been hacked, reverse-engineered,
+   dissected, and enhanced more than any other games in PC
+   history. And now, as more and more people become hooked
+   into the Internet, DOOM-engine games are rapidly becoming
+   the Killer Apps of the 'net, as well. Although the
+   remainder of this document will refer exclusively to
+   DOOM, the procedures outlined here will work equally well
+   for either DOOM II or Heretic, as well.
 
         DOOM, as released by id, only supports IPX network
    or modem/direct serial link play; TCP/IP networks are not
@@ -101,9 +100,8 @@
         or slower modem, don't waste your time trying to
         play DOOM over it via a SLIP connection. It is,
         quite simply, unplayable. Go invest in a faster
-        modem or, better still, an inexpensive ethernet
-        card.
-              
+        modem or, better still, an ISDN connection.
+
 
         Q2: OK, I've got all the hardware. What software do
    I need? 
@@ -114,18 +112,19 @@
 
         * The latest version of DOOM.  At the time of this
         writing, the latest version of DOOM is 1.9, DOOM II
-        is 1.9, and Heretic is 1.0. It's always best to use
-        the latest version of each game because that is what
-        the majority of other iFraggers will be using, and
+        is 1.9, Heretic is 1.0, and Hexen is in a 4-level
+        beta release. It's always best to use the latest
+        version of each game because that is what the
+        majority of other iFraggers will be using, and
         different versions of each game cannot be used in
         the same network game. Additionally, DOOM versions
         1.1 and below are incapable of using iFrag.
 
-        * A packet driver written specifically for your NIC.
-        The Packet Driver is a standardized interface that
-        lets iFrag (and therefore DOOM) "talk" to your NIC.
-        If you're connecting via modem, you'll need a SLIP
-        packet driver. 
+        * A packet driver written specifically for your
+        hardware. The Packet Driver is a standardized
+        interface that lets iFrag (and therefore DOOM)
+        "talk" to your NIC. If you're connecting via modem,
+        you'll need a SLIP or PPP packet driver.
 
         * iFrag, the TCP/IP network driver for DOOM.  
 
@@ -137,10 +136,10 @@
         Q3: Hold on - I don't have some of this software!
    Where can I get it?
 
-        * To obtain iFrag: Log on to mrcnext.cso.uiuc.edu
-        via anonymous ftp. Change to directory /asre.
-        Download the file iFrag21.ZIP. This is version 2.1
-        of iFrag, the latest as of this writing. 
+        * To obtain iFrag: Log on to tracker.vet.uga.edu via
+        anonymous ftp. Change to directory /pub/asre.
+        Download the file iFrag22.ZIP. This is version 2.2
+        of iFrag, the latest as of this writing.
 
         * Many ethernet cards come with the appropriate
         packet drivers on a utilities diskette packaged with
@@ -181,7 +180,7 @@
 
                    Ethernet Setup Procedure
 
-        Step 0: START WITH A CLEAN BOOT!!!!! Set up your
+        Step 0: START WITH A CLEAN DOS BOOT!!!!! Set up your
    CONFIG.SYS and AUTOEXEC.BAT files to load as few drivers
    as possible. Some definite things to EXclude are memory
    managers (HIMEM, EMM386, QEMM, etc.) and network drivers
@@ -258,7 +257,7 @@
         Step 2: Set up a new directory where iFrag and all
    its configuration files will be kept. You can name this
    directory anything you like (I suggest c:\iFrag). UnZIP
-   the ifrag21.zip file into this new directory, and make it
+   the ifrag22.zip file into this new directory, and make it
    the default (chdir to it). We will refer to this
    directory as the "iFrag directory."
 
@@ -373,6 +372,7 @@
    testing.
 
                    Testing your TCP/IP Setup
+
         Step 1: Reboot your machine and select your new
    iFrag configuration. Next, use your network diagnostic
    programs to test the connection. For example, if you are
@@ -455,9 +455,11 @@
    doom=c:\doom
    doom2=c:\doom2
    heretic=c:\heretic
+   hexen=c:\hexen
    doompwads=c:\doom\wads
    doom2pwads=c:\doom2\wads
    hereticpwads=c:\heretic\wads
+   hexenpwads=c:\hexen\wads
    videolines=50
 
         Edit your iFrag.CFG file to reflect your nickname as
@@ -687,6 +689,7 @@
    ping time is;
         - All discussions related to the pending game are
    concluded.
+
         10. Make sure you know where you are in the ping
    time "pecking order." If the game lags and you have the
    worst ping, leave the game. Slowing a game down is very
