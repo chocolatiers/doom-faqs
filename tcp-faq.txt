@@ -1,7 +1,7 @@
                  The TCP/IP Internet DOOM FAQ
                by Scott Coleman (asre@uiuc.edu)
              and Jay Cotton (jay@calc.vet.uga.edu)
-                        updated 1/11/95
+                        updated 4/8/95
                            
 
                          Introduction
@@ -36,29 +36,18 @@
    opponents.
 
         DOOM across the Internet is made possible by a
-   freeware program called iFrag. iFrag (formerly called
-   iDOOM) uses the UDP protocol (part of the TCP/IP protocol
-   suite) to send DOOM game information between multiple
-   machines on the Internet. By some strange coincidence,
-   the authors of this document are also the creators of
-   iFrag, and we have used the program to play Internet DOOM
-   sessions with opponents from as far away as Estonia. In
-   writing this FAQ, we hope that sharing some of our
-   experience will make it easier for you to get connected
-   in your own Internet DOOM sessions. NOTE: This tutorial
-   will refer specifically to games of DOOM played over the
-   Internet via a DIRECT CONNECTION, i.e. no modems are
-   involved anywhere in the link. Note that IHHD, SLIP and
-   PPP connections all involve modems at some point.
-   Although it is possible to connect two DOOM machines
-   together across the Internet using a modem link, the
-   resulting game will be slow, ranging from the unplayable
-   (e.g. a 14.4Kbps PPP connection) to the marginally
-   playable (e.g. a 28.8Kbps modem running a Compressed SLIP
-   driver). Since these sorts of connections are of only
-   marginal utility, this document will focus only on direct
-   net connections.
-                        The Frag Tracker
+   freeware program called iFrag (formerly called iDOOM).
+   iFrag uses the UDP protocol to send DOOM game information
+   between multiple machines on the Internet. By some
+   strange coincidence, the authors of this document are
+   also the creators of iFrag, and we have used the program
+   to play Internet DOOM sessions with opponents from as far
+   away as Estonia. In writing this FAQ, we hope that
+   sharing some of our experience will make it easier for
+   you to get connected in your own Internet DOOM sessions. 
+
+
+                       The Frag Tracker
 
         The Frag Tracker is a major new enhancement to the
    Internet DOOMing experience. Based on the premise that
@@ -78,7 +67,8 @@
    sufficiently interesting, a player can register a new
    iFrag game on the Frag Tracker which others can then
    join.
-        
+
+
                         Getting Prepared
 
         Q1: I want to play DOOM over the Internet using
@@ -89,49 +79,53 @@
 
         * A machine capable of playing DOOM (D'OHH!) 
 
-        * A network interface card (NIC). And not just any
-        old NIC, mind you - your NIC must be supported by a
-        packet driver if you wish to use it to play Internet
-        DOOM. Usually this means that your NIC must be an
-        ethernet card, although iFrag has been successfully
-        played over token ring. We will assume that your PC
-        is already equipped with a suitable NIC, although it
-        may currently be in use for some other non-TCP/IP
+        * If your site is directly connected to the
+        Internet, you'll need a network interface card (NIC)
+        for your machine. And not just any old NIC, mind you
+        - your NIC must be supported by a packet driver if
+        you wish to use it to play Internet DOOM. Usually
+        this means that your NIC must be an ethernet card,
+        although iFrag has been successfully played over
+        token ring. We will assume that your PC is already
+        equipped with a suitable NIC, although it may
+        currently be in use for some other non-TCP/IP
         function (such as a node on a Novell network). As
         long as your NIC is supported by a standard packet
-        driver (see below), your machine can be readily
-        converted into an iFrag "playstation."
+        driver, your machine can be readily converted into
+        an iFrag "playstation."
 
-        * A direct connection to the Internet. As noted
-        earlier, if there is a modem somewhere in the link
-        between your PC and your opponent's PC, this FAQ is
-        not for you. Although it is possible to play
-        Internet DOOM over a modem link (either by dialing
-        up to a UNIX machine and using IHHD or via
-        SLIP/PPP), such connection methods are beyond the
-        scope of this document.
+        * If you are not directly connected, you'll need a
+        28.8Kbps modem (V.34 or V.FC) as well as an ISP
+        (Internet Service Provider) with suitable dialup
+        facilities. NOTE: If you have a 14.4Kbps (V.32bis)
+        or slower modem, don't waste your time trying to
+        play DOOM over it via a SLIP connection. It is,
+        quite simply, unplayable. Go invest in a faster
+        modem or, better still, an inexpensive ethernet
+        card.
               
 
         Q2: OK, I've got all the hardware. What software do
    I need? 
                   
         In addition to the hardware requirements, some
-   software is also required to round out your the package.
-   Before you can play, you'll need to pick up the
-   following:
+   software is also required to complete your setup. Before
+   you can play, you'll need to pick up the following:
 
         * The latest version of DOOM.  At the time of this
-        writing, the latest version of DOOM is 1.666, DOOM
-        II is 1.7a, and Heretic is 1.0. It's always best to
-        use the latest version of each game because that is
-        what the majority of other iFragers will be using,
-        and different versions of each game cannot be used
-        in the same network game. Additionally, DOOM
-        versions 1.1 and below are incapable of using iFrag.
+        writing, the latest version of DOOM is 1.9, DOOM II
+        is 1.9, and Heretic is 1.0. It's always best to use
+        the latest version of each game because that is what
+        the majority of other iFraggers will be using, and
+        different versions of each game cannot be used in
+        the same network game. Additionally, DOOM versions
+        1.1 and below are incapable of using iFrag.
 
         * A packet driver written specifically for your NIC.
         The Packet Driver is a standardized interface that
         lets iFrag (and therefore DOOM) "talk" to your NIC.
+        If you're connecting via modem, you'll need a SLIP
+        packet driver. 
 
         * iFrag, the TCP/IP network driver for DOOM.  
 
@@ -145,7 +139,7 @@
 
         * To obtain iFrag: Log on to mrcnext.cso.uiuc.edu
         via anonymous ftp. Change to directory /asre.
-        Download the file IFrag20.ZIP. This is version 2.0
+        Download the file iFrag21.ZIP. This is version 2.1
         of iFrag, the latest as of this writing. 
 
         * Many ethernet cards come with the appropriate
@@ -161,7 +155,9 @@
         source code and example programs for the packet
         drivers - while interesting (especially to
         programmer types), you won't need these in order to
-        play iFrag.
+        play iFrag. Modem users should grab the file
+        slippr15.zip from this directory. NOTE: Make sure
+        that you do NOT get "slipr15d.zip" by mistake!
 
         * If you need basic network diagnostic utilities,
         the WATTCP applications are freely available and
@@ -174,12 +170,16 @@
    it up? 
 
         Setting your computer up to use the TCP/IP protocol
-   suite via a packet driver is very straightforward. As an
-   illustration, I'll be taking you through the steps
-   necessary to set up a PC with an SMC ethernet card and
-   the IP address 128.192.23.5. You'll of course need to
-   substitute your own specific information in place of the
-   examples given here. All set? OK, let's get started.
+   suite via a packet driver is very straightforward. This
+   next section will illustrate the procedure for setting up
+   a PC with an SMC ethernet card and the IP address
+   128.192.23.5. Modem+SLIP users can skip ahead to the next
+   section, which describes the analogous procedure for
+   dialup SLIP users. You'll of course need to substitute
+   your own specific information in place of the examples
+   given here. All set? OK, let's get started.
+
+                   Ethernet Setup Procedure
 
         Step 0: START WITH A CLEAN BOOT!!!!! Set up your
    CONFIG.SYS and AUTOEXEC.BAT files to load as few drivers
@@ -258,7 +258,7 @@
         Step 2: Set up a new directory where iFrag and all
    its configuration files will be kept. You can name this
    directory anything you like (I suggest c:\iFrag). UnZIP
-   the idoom20.zip file into this new directory, and make it
+   the ifrag21.zip file into this new directory, and make it
    the default (chdir to it). We will refer to this
    directory as the "iFrag directory."
 
@@ -323,13 +323,63 @@
    of your opponents' machines, a nameserver lookup won't be
    necessary to resolve their addresses. 
 
-        Step 4: Test your TCP/IP setup. Reboot your machine
-   and select your new iFrag configuration. Next, use your
-   network diagnostic programs to test the connection. For
-   example, if you are using the WATTCP application suite
-   mentioned earlier, unzip the TCPINFO and PING programs
-   from the WATTCP apps archive into your iFrag directory.
-   At the DOS prompt, type:
+        Your basic setup is now complete. Please skip ahead
+   to the section on testing your TCP/IP setup.
+
+
+                     SLIP Setup Procedure
+
+        This procedure assumes that you are using the
+   cslipper SLIP driver mentioned earlier. If you are using
+   a different driver, you'll need to change the commands
+   which follow accordingly.
+
+        Step 0: Obtain Internet access from a service
+   provider who allows SLIP/PPP connections on their
+   terminal server. A "shell account" (where you log in to a
+   remote UNIX host and type commands such as "telnet" and
+   "ftp") will NOT work. How to obtain this type of service
+   from such a provider is beyond the scope of this
+   document.
+
+        Step 1: Using your favorite serial communications
+   package, dial in to your service provider, log in, and
+   issue whatever commands are required to change their
+   terminal server to SLIP mode. How this is done varies
+   from service provider to service provider and is beyond
+   the scope of this document. Check with your service
+   provider for more details.
+
+        Once you have logged on and enabled SLIP mode, exit
+   your telecommunications software WITHOUT HANGING UP -
+   this is VERY IMPORTANT! Any telecommunications package
+   worth the floppy it comes on will have a "save without
+   hangup" command, or will prompt you when you exit to ask
+   whether it should hang up or not.
+
+        Change to the directory where you have installed
+   your packet driver and load it. An example command line
+   for CSLIPPER is 
+
+           CSLIPPER com1 vec=0x60 baud=57600
+
+   where com1 is the serial port to which your modem is
+   connected, 0x60 is the interrupt vector the packet driver
+   should use, and 57600 is the baud rate. The packet driver
+   will display a signon message and load itself into
+   memory.
+
+        Your SLIP packet driver is now loaded and ready for
+   testing.
+
+                   Testing your TCP/IP Setup
+        Step 1: Reboot your machine and select your new
+   iFrag configuration. Next, use your network diagnostic
+   programs to test the connection. For example, if you are
+   using the WATTCP application suite mentioned earlier,
+   unzip the TCPINFO and PING programs from the WATTCP apps
+   archive into your iFrag directory. At the DOS prompt,
+   type:
 
              TCPINFO    
 
@@ -372,12 +422,13 @@
    network administrator. Examples for our test system:
 
         ping 128.192.44.67
+
    and
 
         ping 128.174.134.150
 
 
-        Step 5: Set up your iFrag.CFG. Again using your
+        Step 2: Set up your iFrag.CFG. Again using your
    preferred ASCII text editor, modify the iFrag.CFG file in
    your iFrag directory so that all entries are correct for
    your system. You will need to specify the paths to your
@@ -395,8 +446,11 @@
    ; Sample iFrag Configuration File
    ;
 
-   ; stealth 
+   ; stealth
    nick=FragLord
+   realname=Joe Ayedume
+   location=Redmond, WA, USA
+   password=secret
    tracker=128.174.134.150,6666
    doom=c:\doom
    doom2=c:\doom2
@@ -413,10 +467,10 @@
    to disk.
 
 
-             Put Me in, Coach - I'm Ready to Play! 
+            Put Me in, Coach - I'm Ready to Play! 
 
         All right! iFrag is now installed and ready for
-   fragging! Now all I need are some more players to sink my
+   carnage! Now all I need are some more players to sink my
    rockets into. From my iFrag directory, I start iFrag by
    typing
 
@@ -431,14 +485,14 @@
    and PgDn keys, I can view a summary of each available
    game. This game summary includes the type of game (DOOM,
    DOOM II, or Heretic), the nicknames of all the players
-   currently in the game, a brief description/comment, as
-   well as the current game settings (skill, episode, map,
-   etc.). I notice that my friend (who is known only as
-   "ArchVile") is currently hosting a game of Heretic. Since
-   it's been a while since I have turned him into a chicken,
-   I press the <ENTER> key to select his game. iFrag
-   immediately contacts ArchVile's machine and I join the
-   game.
+   currently in the game, the location of the machine
+   hosting the game, a brief description, as well as the
+   current game settings (skill, episode, map, etc.). I
+   notice that my friend (who is known only as "ArchVile")
+   is currently hosting a game of Heretic. Since it's been a
+   while since I have turned him into a chicken, I press the
+   <ENTER> key to select his game. iFrag immediately
+   contacts ArchVile's machine and I join the game.
 
         ArchVile is running iFrag in server mode. This makes
    ArchVile the coordinator for this particular game - he is
@@ -543,83 +597,137 @@
    frustrations. Now getting into a game of Internet DOOM is
    as easy as getting fragged with a BFG-9000!
 
-                   Oh Oh - It's Not Working!
-
-             OK, so you've done everything, just like I've
-   shown you, but you're still having problems. The
-   following are some suggestions to try in case of trouble.
-
-        Q: The music starts up fine, but all I see is a BSOD
-   (Black Screen of Death).
-        Q: My machine displays "sending network start info"
-   or "listening for network start info" and then locks up. 
-
-        A: This problem can have several causes. Perhaps one
-   of the other players' machines is slower than the others,
-   or has a fragmented disk and takes a longer time to load
-   DOOM at startup. Or perhaps some packets were lost -
-   iFrag uses UDP (User Datagram Protocol) packets to
-   exchange game information between all machines in the
-   game. UDP packets are not guaranteed to reach their
-   destination, and there is no mechanism for the sender to
-   even be informed that what it sent never made to the
-   destination machine. iFrag is designed to compensate for
-   these lost packets to the extent possible, and
-   occasionally this detection and correction takes a few
-   extra seconds. You should always wait for at least 30 -
-   45 seconds for the other DOOM engines to sync up before
-   you abort the setup. 
 
 
-         Pointers and Tips for More Fragging Enjoyment 
+                 iFrag/Frag Tracker Etiquette
+                        
+        The Frag Tracker was intended to provide a pleasant
+   meeting place for DOOM players from all over the
+   Internet. However, there is an unfortunate human tendency
+   to behave both more aggressively and less politely
+   towards others over a cyberspace link than one would
+   behave face-to-face. In an attempt to help counteract
+   this tendency, we urge you to employ the following
+   guidelines in your use of the Frag Tracker. These
+   guidelines stem from the common courtesies and politeness
+   we extend to each other in everyday life. Think of the
+   server of an iFrag game as being the host of a small get-
+   together. This person has invited you into their home
+   (virtual home in the case of iFrag) for a game of DOOM.
+   While connected to their iFrag server, behave as you
+   would if you were a guest in their home (and as you would
+   like others to behave in your own home). Have some
+   consideration for the other players and everyone will
+   enjoy their gaming even more. On the other hand, severe
+   and/or repeated violations of these guidelines may result
+   in revocation of Tracker access privileges.
 
-        We'd like to leave you with a few experiences and
-   opinions about Internet deathmatches.
+        1. Do NOT use abusive or vulgar language in public. 
+   Type /freeze or /notrack (or both) if you want a private
+   chat.  Do not put vulgar or abusive language in your game
+   description. 
+
+        2. Do NOT falsify information in ifrag.cfg.  Anyone
+   not reporting their real name, location, or email address
+   may have their Tracker access privileges revoked.
+
+        3. Do not kick someone out of your game before first
+   asking that person to leave. One exception to this is if
+   they don't respond to your "hello" within several seconds
+   (in violation of item 7 below); in that case, feel free
+   to kick or ban them at will. ;-)
+
+        4. If you are in an iFrag game setup on the tracker
+   and you are asked to leave, do so. While the server
+   player should be polite in his request, he is under no
+   obligation to allow any particular player to join or   
+   remain in his game. Usually the server player will ask
+   another player to leave because that player's packet
+   latency, or "ping" time, is high enough that it would
+   cause playability of the game to suffer. Don't take it
+   personally; just find another game involving machines to
+   which you are better connected. 
+
+        5. If you decide you do not want to play a game
+   after it has been launched, do not press alt-x to get out
+   of the game - this will prevent ALL the players from
+   loading. It's a simple courtesy to wait for the game to
+   begin before leaving; at that point, your departure will
+   not prevent the other players from continuing their game.
+
+        6. If the game appears to be hung while loading, be
+   sure to wait at least 60 seconds before aborting.  Some
+   computers are slower than others when loading all the
+   doom data at the start of the game. This may be caused by
+   something as simple as a fragmented hard drive. In any
+   case, aborting too soon is decidedly uncool (just as it
+   is in item 5).
+
+        7. It is rude to join a game and then leave without
+   saying something. If you join a game, and see that your
+   connection is poor, at least say something like "Oops!
+   Sorry, I was looking for a better connection than I have
+   with you. Later!" Think how you would feel if someone
+   walked up to your home, rang your doorbell, then when you
+   opened the door they simply looked at you, turned, and
+   walked away without saying a word. It's enough to make
+   Judith Martin shudder.
+
+        8. If you are serving a game in which you want only
+   certain players to join, be sure to put that info in the
+   game description (use the "/desc" command).
+
+        9. When enough players have joined a game, give some
+   time to be sure that:
+      - Everyone has a chance to see and comment on the game
+   parameters;
+        - Everyone has or has successfully transferred the
+   PWAD (if one is selected);
+      - All players have a pretty good idea of what their
+   ping time is;
+        - All discussions related to the pending game are
+   concluded.
+        10. Make sure you know where you are in the ping
+   time "pecking order." If the game lags and you have the
+   worst ping, leave the game. Slowing a game down is very
+   bad form! There will always be other games for you to
+   play; don't be selfish and ruin things for the other
+   players.
+
+
+                    Other Pointers and Tips
 
         First, try not to use the "pause" key. Do NOT use
-   the pause key just so you can type a message. DO use the
-   pause key if you have to answer the phone; either find a
-   hiding place to hole up, or if you are fragged, just stay
-   dead (don't hit the spacebar) until your call is
-   completed. It's inconsiderate to make everyone else wait
-   on you. Do NOT release the pause after someone else
-   pauses.  It's hard to yell at someone over an IP
-   connection. It's really annoying to play against people
-   who like to pause just when they're about to be shot. 
-   Argh!
+   the pause key just so you can type a message. Do NOT use
+   the pause key if you have to answer the phone; either
+   find a hiding place to hole up, or if you are fragged,
+   just stay dead (don't hit the spacebar) until your call
+   is completed. It's inconsiderate to make everyone else
+   wait just because *you* decided to stop playing and take
+   a phone call. If someone else has paused the game, do NOT
+   release the pause - let the person who paused release it.
+   Before releasing pause, the original pauser should first
+   check to make sure everyone else is ready to begin
+   playing again. People tend to get angry when an
+   unexpected pause release causes them to become easy
+   fragbait for another player. It's also really annoying to
+   play against people who like to pause just when they're
+   about to be shot.  Argh!
 
-        Second, DO type messages. A pause at the beginning
-   of the game is OK just to see if the other player is
-   there.  If you notice a sudden increase in game speed,
-   another player may have aborted or crashed. You might end
-   up playing by yourself if you are not alert... If you can
-   monitor network traffic (I have a repeater nearby that
-   gets very busy when I play), notice the difference
-   between the amount of traffic when connected and
-   disconnected. 
+        Second, DO type messages. If you notice a sudden
+   increase in game speed, another player may have aborted
+   or crashed. You might end up playing by yourself if you
+   are not alert... Type a message and see if your opponents
+   are still in the game. If you can monitor network traffic
+   (I have a repeater nearby that gets very busy when I
+   play), notice the difference between the amount of
+   traffic when connected and disconnected. 
 
-        Third, Be patient. It sometimes takes 30-60 seconds
-   for the connection to complete. The first phase, finding
-   a node, should be immediate. As mentioned above, if you
-   cannot find a node, something is wrong. The second phase,
-   looking/sending network start info, may take 30 seconds,
-   longer if one of the players has a slow or fragmented
-   hard disk (this is the phase where DOOM loads the info it
-   needs to play from the WAD file(s)).  The third phase,
-   sometimes a blank screen just before the game loads, may
-   take another 15-30 seconds.  After finding a node, please
-   don't abort until you have waiting a sufficient time for
-   a connect. Also, if your connection doesn't work the
-   first time, try again immediately! If it failed on your
-   end, chances are it failed on the other end, also, and
-   your partner will be back in iFrag trying to connect and
-   wondering where you are.
-
-        Forth, Internet games will self abort sometimes with
-   errors. Don't panic, just restart iFrag. Sometimes one of
-   the computers will lock up - again, just restart. If you
-   get tired of restarting (this doesn't happen much), just
-   walk away! It's just a game!
+        Third, Internet games will sometimes self abort with
+   error messages. Don't panic, just restart iFrag.
+   Sometimes one of the computers will lock up - again, just
+   restart. If you get tired of restarting (this doesn't
+   happen much), just walk away! It's just a game!
 
         Last, hope for a fast connection. This isn't always
    a problem, but when the connection is slow, the game
