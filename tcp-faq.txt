@@ -1,0 +1,411 @@
+             The TCPSETUP DOOMer's FAQ version 1.00
+                by Scott Coleman (tmkk@uiuc.edu)
+              and Jay Cotton (jay@calc.vet.uga.edu)
+   
+        DOOM across the Internet is made possible by a neat little
+   freeware program called TCPSETUP, written by Jake Page. TCPSETUP
+   uses the UDP protocol (part of the TCP/IP protocol suite) to send
+   DOOM game information between multiple machines on the Internet.
+   It is based on WATTCP, a public domain library of routines
+   written by Eric Engelke of the University of Waterloo. Although
+   the authors of this document did not write TCPSETUP, we have used
+   the program extensively and played iDOOM sessions successfully
+   with opponents as far away as Estonia (formerly a part of the
+   Soviet Union). In writing this FAQ, we hope that sharing some of
+   our experience will make it easier for you to get connected in
+   your own iDOOM sessions.
+   
+   Q1: I want to play Internet DOOM. What hardware do I need?
+   
+        To successfully play DOOM across the Internet, you will need
+   the following hardware:
+
+        * A machine capable of playing DOOM (D'OHH!) 
+
+        * An ethernet card. And not just any old ethernet card, mind
+        you - your ethernet card must be supported by a packet
+        driver if you wish to use it to play iDOOM. This document
+        assumes that your PC is already equipped with a functional
+        ethernet card, although it may currently be in use for some
+        other non-TCP/IP function (such as a node on a Novell
+        network).
+
+        * A direct connection to the Internet. If there is a modem
+        somewhere in the link between your PC and your opponent's
+        PC, this FAQ is not for you. Although it is possible to play
+        iDOOM over a modem link (either by dialing up to a UNIX
+        machine and using IHHD or via SLIP/PPP), such connection
+        methods are beyond the scope of this document.
+
+   
+        * A MicroSoft-compatible mouse. OK, OK - so you don't REALLY
+        need a mouse to play iDOOM, but it does help you turn more
+        quickly, aim more accurately, and STOMP your keyboard-only
+        iDOOM opponents... ;-)
+   
+   Q2: OK, I've got all the hardware. What software do I need?
+                  
+        In addition to the hardware requirements, some software is
+   also required to round out your the package. Before you can play,
+   you'll need to pick up the following:
+   
+        * DOOM 1.2 or higher (1.6 beta or higher is STRONGLY
+        recommended, since 1.6 seems to have solved some problems
+        related to initializing network games). DOOM versions 1.1
+        and below are incapable of using TCPSETUP.
+   
+        * A packet driver written specifically for your ethernet
+        card. The Packet Driver is what lets TCPSETUP (and therefore
+        DOOM) "talk" to your ethernet card.
+   
+        * TCPSETUP.EXE, the Internet driver for DOOM.
+        
+        * The WATTCP Applications (not absolutely necessary, but can
+        be useful for debugging and testing your setup).
+   
+   Q3: Hold it - I don't have some of this software! Where can I get
+   it?
+        * To obtain TCPSETUP: Log on to infant2.sphs.indiana.edu via
+        anonymous ftp. Change to directory /pub/doom/multi_doom/net.
+        Download the file TCPSET9B.ZIP. Version 0.9B is the latest
+        version of TCPSETUP as of this writing. The file named
+        TCPSETUP.ZIP is an older version which is both buggy and
+        incompatible with 0.9B - make sure you get the newer
+        version.
+   
+        * Many ethernet cards come with the appropriate packet
+        drivers on a utilities diskette packaged with the card. If
+        your card does not come with a packet driver, there is an
+        excellent collection of freely available packet drivers
+        called the Crynwr (nee Clarkson) Packet Driver collection.
+        You can obtain it via anonymous ftp from oak.oakland.edu.
+        Change to the /pub/msdos/pktdrvr subdirectory and download
+        PKTD11.ZIP and PKTD11C.ZIP. The files PKTD11A.ZIP and
+        PKTD11B.ZIP contain source code for the packet drivers and
+        example programs - you won't need these in order to play
+        iDOOM.
+   
+        * To obtain the WATTCP applications, ftp to
+        dorm.rutgers.edu, change to the /pub/msdos/wattcp/
+        subdirectory, and download file APPS.ZIP.
+                  
+   Q4: OK, I've got everything, now what do I do to set it up?
+   
+        Setting your computer up for TCP/IP access is very
+   straightforward. As an illustration, I'll be taking you through
+   the steps necessary to set up a PC with an SMC ethernet card and
+   the IP address 128.192.23.5. You'll of course need to substitute
+   your own specific information in place of the examples given
+   here. All set? OK, let's get started.
+   
+        Step 0: START WITH A CLEAN BOOT!!!!! Set up your CONFIG.SYS
+   and AUTOEXEC.BAT files to load as few drivers as possible. This
+   includes such things as memory managers (HIMEM, EMM386, QEMM,
+   etc.) and network drivers (e.g. LSL, IPXODI). DOOM doesn't need
+   the former, and the latter will probably conflict with the packet
+   driver. We recommend that you prepare a boot floppy with a
+   CONFIG.SYS containing only a FILES=20 line, and an AUTOEXEC.BAT
+   containing only prompt=$p$g.
+   
+        Step 1: Set up the packet driver.
+        Determine your ethernet card's IRQ setting, it's base I/O
+   port setting, and it's memory address setting (if any). You
+   should be able to determine this by looking at the card itself
+   and consulting the user manual. You'll need some if not all of
+   this information, depending upon which packet driver you use.
+   Unzip the appropriate driver from Crynwr Packet Driver collection
+   archive. In our example case, the packet driver is called
+   SMC_WD.COM. By looking at the jumpers on the card and consulting
+   the manual, I determined that the card has been set to IRQ 7,
+   Base I/O port address 300h, and the base memory address is at
+   segment d800h. For this example, I have chosen to use interrupt
+   60h for the packet driver. Packet drivers typically operate on an
+   interrupt in the range of 60h to 80h inclusive; since nothing
+   else in my sample system happens to be using the first available
+   interrupt (INT 60h), I chose that. Thus, to load my packet
+   driver, I use the following command line:
+   
+   SMC_WD 0x60 0x7 0x300 0xd800
+   
+   where 0x60 is the packet driver interrupt, 0x7 is the IRQ setting
+   on the card, 0x300 is the I/O port base address, and 0xd800 is
+   the memory base address (NOTE: all numbers are in C-style HEX
+   notation). Don't worry if you don't understand what all this
+   stuff means - as long as you use the correct numbers, your packet
+   driver should work. NOTE: If your PC is currently part of a
+   Novell network (e.g. Netware, Netware Lite, Personal Netware) the
+   parameters you need can be found in a file called NET.CFG,
+   usually located in your \NOVELL, \NWLITE or \NWCLIENT
+   subdirectories (along with all the other drivers needed by
+   Novell). 
+   
+        At the very minimum, the packet driver should give a sign on
+   message and report the ethernet address of your NIC (Network
+   Interface Card) when you load it. Chances are that if your
+   ethernet card has been functioning properly for other tasks (e.g.
+   as a node on a Novell network) then you'll have no problems here. 
+   If not, or if there are any error or warning messages, something
+   is wrong. One possibility is that one of the settings on your
+   ethernet card is in conflict with those of another adapter card
+   in your system. No two adapter cards can have the same IRQ, I/O
+   port, or memory address settings, nor can the memory areas of two
+   cards overlap. Whatever the cause, you'll need to correct the
+   problem before continuing.
+   
+        Step 2: Set up your WATTCP.CFG file. 
+        Your WATTCP.CFG file contains important parameters used by
+   the WATTCP TCP/IP kernel. These values MUST be entered correctly
+   if you wish to make a connection with another DOOM PC. In
+   preparation for this, you'll need several bits of information.
+   Contact the network administrator for your site and find out the
+   IP address for your machine, the IP address for your gateway or
+   router, the IP address of at least one Domain Name Server local
+   to your site, and your netmask value. The three IP addresses will
+   each consist of four groups of digits separated by periods. In
+   our example, the machine's IP address is 128.192.23.5, the
+   gateway is 128.192.23.1, the netmask is 255.255.255.0, and the
+   nameserver address is 128.192.44.67. NOTE: it is important to use
+   the numeric IP addresses, not the actual host names. NOTE: If you
+   have other Internet programs currently installed on your machine,
+   such as Gopher or the Trumpet newsreader, you can probably get
+   the information you need from the configuration files you need
+   for those programs (some will even use their own WATTCP.CFG, in
+   which case you can simply copy it over to your DOOM directory).
+
+        When you have collected all this information, unzip the
+   TCPSET9B.ZIP file in your DOOM directory. Use your favorite ASCII
+   text editor to edit the file called WATTCP.CFG. Edit or add the
+   following lines in WATTCP.CFG:
+   
+   my_ip=
+   gateway=
+   nameserver=
+   netmask=
+   MSS=
+   
+   On our example machine, the WATTCP.CFG file looks like this:
+   my_ip=128.192.23.5
+   gateway=128.192.23.1
+   netmask=255.255.255.0
+   nameserver=128.192.44.67
+   MSS=256
+   
+   Save the changed file and exit back to DOS.
+   
+        A short digression: The last line of the WATTCP.CFG file
+   specifies the MSS, or Maximum Segment Size, used by WATTCP when
+   sending and receiving IP packets across the Internet. The theory
+   behind a small MSS is that it can improve throughput in a game
+   like DOOM, which sends out lots and lots of tiny packets (usually
+   16 or so bytes in size). The jury is still out on whether or not
+   this actually helps; however, it won't HURT so I recommend that
+   you throw it in just in case. Some players who have tried the
+   MSS=256 trick have reported noticeable increase in speed and
+   playability of network games; feel free to do some experimenting
+   and find out for yourself.
+   
+        If you know your machine's IP address, but you can't find
+   out the other values, you can often get away with some educated
+   guesswork. For instance, the gateway for a subnet usually has an
+   IP address ending in .1, as is the case with our example. Thus,
+   if your IP address is xxx.yyy.zzz.www, try setting your gateway's
+   IP address to xxx.yyy.zzz.1. As for the subnet mask, a common
+   value for this parameter is 255.255.255.0. Finally, if you don't
+   know your nameserver's IP address, you can probably get by
+   without it for the purposes of DOOM playing. Since you'll be
+   specifying IP addresses for all of your opponents' machines, a
+   nameserver lookup won't be necessary to resolve their addresses.
+   
+        Step 3: Test your TCP/IP setup.
+        Load your packet driver with the appropriate interrupt, IRQ,
+   I/O and memory addresses. Next, unzip the TCPINFO and PING
+   programs from the WATTCP apps archive into your DOOM directory.
+   At the DOS prompt, type:
+   
+             TCPINFO    
+   
+   and press the <Enter> key. If your WATTCP.CFG values are set up
+   correctly, and if your packet driver and net connection are
+   functional, you'll see a couple of screens of information about
+   your system, including your ethernet address and the parameters
+   you specified in the WATTCP.CFG file. 
+   
+        If everything looks OK, the next step is to use the PING
+   program to attempt to establish contact with your subnet gateway.
+   At the DOS prompt, type
+   
+        PING <yourgateway's.numeric.ip.address>
+   
+   and press the <Enter> key. After a brief delay, you should see a 
+   message telling you that the host is responding, as well as the
+   round trip time for PING's test packets. If you see the "Timeout"
+   error message, then something is wrong with your setup; if your
+   PC is unable to reach your gateway, it will be unable to reach
+   the rest of the Internet, as well. For our sample system, we
+   would type:
+   
+             ping 128.192.23.1
+   
+        If your gateway PING was successful, try PINGing your Domain
+   Name Server (at the IP address you specified in WATTCP.CFG) as
+   well as some well-known site on the internet (e.g. infant2, which
+   is at IP address 129.79.234.115). These will test your machine's
+   ability to connect with other machines outside of your subnet as
+   well as those outside of your site. All of these PINGs should
+   result in a "host responding" message with a response time. If
+   any of these attempts fails, recheck your entries in WATTCP.CFG
+   and/or get some help from your network administrator. Examples
+   for our test system:
+   
+        ping 128.192.44.67
+   
+   and
+
+        ping 129.79.234.115
+
+
+             Put Me in, Coach - I'm Ready to Play!
+
+        OK, if you've made it this far, you're now ready for the
+   main event: an actual game of DOOM! For this first attempt, it's
+   best to try and find someone on your local network who's willing
+   to put in a little frag time with you. Connections on your local
+   net will be faster and less problematic, whereas if you attempt
+   as long distance connection your first time out, you'll have a
+   hard time discerning problems caused by distance from problems
+   caused by an incorrect configuration.
+
+        In general, the players will decide beforehand which machine
+   will be machine #1, which will be #2, which will be #3, and so
+   on. Then each machine's command line follows the format
+
+   tcpsetup [game options] -net <machine_number> <IP_addresses>
+
+        The IP addresses MUST appear in order, i.e. machine #1's IP
+   address must appear FIRST in ALL command lines. Machine #2's IP
+   address must appear SECOND, and so on. The final piece to the
+   puzzle is that each machine leaves it's own IP address out of the
+   list. The result is a set of command lines like the following:
+
+   tcpsetup [options] -net 1 <machine2> <machine3> <machine4>
+   tcpsetup [options] -net 2 <machine1> <machine3> <machine4>
+   tcpsetup [options] -net 3 <machine1> <machine2> <machine4>
+   tcpsetup [options] -net 4 <machine1> <machine2> <machine3>
+
+        Note that machine1, machine2, machine3, and machine4 are the
+   numeric IP addresses of each respective machine in the iDOOM
+   session.
+
+        In our example scenario, the computer is part of a local
+   area network in a computer lab. Thus, there are identical
+   machines sitting immediately beside my test machine, with IP
+   addresses one off from my own, i.e. the test machine has IP
+   address 128.192.23.5, the machine to the right has IP address
+   128.192.23.6, and the one to the left is 128.192.23.4. After
+   stepping through the basic configuration process outlined above
+   on the other test machines, my frag buddies and I are ready to
+   begin. On my machine, which we decided will be machine #1, I
+   type:
+
+   tcpsetup -deathmatch -net 1 128.192.23.6 128.192.23.4
+
+   The guy to my right, whose machine is #2 and whose IP address is
+   128.192.23.6, types:
+
+   tcpsetup -deathmatch -net 2 128.192.23.5 128.192.23.4
+
+   And finally the guy to my left (machine #3, IP address
+   128.192.23.4) types:
+
+   tcpsetup -deathmatch -net 3 128.192.23.5 128.192.23.6
+
+        After we all hit <ENTER>, our machines display "Looking for
+   a Node..." then "Found a Node!" and after that the usual DOOM
+   startup information. Shortly thereafter, the screen melts away
+   and there we are, in E1M1, pistols at the ready!
+
+        Give your buddies a good thrashing - you've earned it! Now,
+   after you've gotten DOOM working on your own subnet, you're ready
+   for the final step. Find a partner who is also capable of playing
+   Internet DOOM. Watch the posts in alt.games.doom, or tune into
+   the #doom or #tcpdoom channels on irc. You and he will negotiate
+   game parameters, such as which map to play, which skill level,
+   and so on. You'll also decide on who will be -net 1 and who will
+   be -net 2 (experienced DEATHMATCHers will often try very hard to
+   avoid being -net 1, since that player's uniform is colored day-
+   glo green and is easier to spot in a DEATHMATCH). Now simply add
+   the parameters you've agreed on to the tcpsetup command line you
+   used before, making sure that the -net <n> <etc.> is the LAST
+   thing on the command line, and that the entire command line does
+   NOT exceed the 128 character limit imposed by DOS. A typical
+   command line will look something like
+
+   tcpsetup -skill 5 -nomonsters -deathmatch -net 2 128.192.55.666
+
+
+                   Oh Oh - It's Not Working!
+
+        OK, so you've done everything, just like I've shown you, but
+   you're still having problems. The following are some suggestions
+   to try in case of trouble.
+
+        Q: My machine keeps looking for a node forever.
+        A: TCPSETUP searches for other game nodes in a very specific
+   way: It starts searching for the LAST player first, and then
+   works its way backward. Thus, if you try to start a 4 player net
+   game, but the 4th player has problems, NOBODY will find ANYBODY
+   ELSE. This behavior can be very misleading and confusing to those
+   caught unawares.
+
+        Q: I keep seeing this ICMP: port unreachable message on my
+   screen.
+        A: This message is generated by the other machine when the
+   port being requested by the sender is unavailable (in use) by the
+   destination. I've seen this happen in some cases when I started
+   looking for a node before the other player did. Once the other
+   player began looking for a node also, the ICMP: messages went
+   away, and the game linked up normally. If you see this message,
+   you might also want to try using a different port (see the
+   TCPSETUP documentation on the -port command line parameter).
+
+        Q: The music starts up fine, but all I see is a BSOD (Black
+   Screen of Death).
+        Q: My machine displays "sending network start info" or
+   "listening for network start info" and then locks up.
+        A: TCPSETUP uses UDP packets to exchange game information
+   between all machines in the game. UDP packets are not guaranteed
+   to reach their destination, and there is no mechanism for the
+   sender to even be informed that what he sent never made to the
+   destination machine. DOOM has its own internal error detection
+   and correction schemes, so this ordinarily isn't a problem -
+   EXCEPT, apparently, at game startup. For whatever reason, DOOM
+   appears to be extremely vulnerable to dropped packets during the
+   game startup arbitration. This can result in some machines
+   getting as far as "sending network start info" but never getting
+   a response (if the response packet was lost) or in a node
+   "listening for network start info" forever, since the network
+   start info packet fell into a bit bucket somewhere along the way.
+   One thing to do is make sure that you're waiting long enough
+   before giving up and declaring your machine locked. In some
+   cases, especially those involving multiple players and/or long
+   distances, it can take quite some time for all machines involved
+   to sync up. Give it a full minute before you give up.
+
+    In some cases a machine will even get as far as clearing the
+   graphics mode screen and starting up the music track, but will
+   lose the game at that point.
+
+        Q: What does "game mode indeterminate" mean?
+        A: The author has only seen this error message once, on a
+   VERY long distance connection attempt. The two ends found each
+   other quickly, went through the entire startup sequence, only to
+   have DOOM dump out immediately to DOS with the above error
+   message. Upgrading both ends of the connection from the DOOM 1.5
+   beta to the DOOM 1.6 beta resulted in a successful connection.
+   
+        You call also compete in the ongoing TCP Doom Tourney.
+   Contact Jay Cotton at jay@calc.vet.uga.edu for information on
+   joining the tourney.  You can also get help running tcpsetup and
+   meet the authors of many of the best wads and utilities on #doom.
+   Be warned! The IRC and tcpdoom can be VERY addictive. Don't lose
+   your "real" life just to play a game!
